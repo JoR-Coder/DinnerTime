@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C09238B192950710038D7C7 /* ITHSFoodTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C09238A192950710038D7C7 /* ITHSFoodTableViewController.m */; };
 		8C24D45F191A49850091C044 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C24D45E191A49850091C044 /* Foundation.framework */; };
 		8C24D461191A49850091C044 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C24D460191A49850091C044 /* CoreGraphics.framework */; };
 		8C24D463191A49850091C044 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C24D462191A49850091C044 /* UIKit.framework */; };
@@ -34,6 +35,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8C092389192950710038D7C7 /* ITHSFoodTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITHSFoodTableViewController.h; sourceTree = "<group>"; };
+		8C09238A192950710038D7C7 /* ITHSFoodTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITHSFoodTableViewController.m; sourceTree = "<group>"; };
 		8C24D45B191A49850091C044 /* DinnerTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DinnerTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C24D45E191A49850091C044 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8C24D460191A49850091C044 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -119,6 +122,8 @@
 				8C24D474191A49860091C044 /* ITHSViewController.m */,
 				8C24D476191A49860091C044 /* Images.xcassets */,
 				8C24D465191A49850091C044 /* Supporting Files */,
+				8C092389192950710038D7C7 /* ITHSFoodTableViewController.h */,
+				8C09238A192950710038D7C7 /* ITHSFoodTableViewController.m */,
 			);
 			path = DinnerTime;
 			sourceTree = "<group>";
@@ -253,6 +258,7 @@
 				8C24D46F191A49860091C044 /* ITHSAppDelegate.m in Sources */,
 				8C24D475191A49860091C044 /* ITHSViewController.m in Sources */,
 				8C24D46B191A49860091C044 /* main.m in Sources */,
+				8C09238B192950710038D7C7 /* ITHSFoodTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,6 +463,7 @@
 				8C24D48F191A49860091C044 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8C24D490191A49860091C044 /* Build configuration list for PBXNativeTarget "DinnerTimeTests" */ = {
 			isa = XCConfigurationList;
@@ -465,6 +472,7 @@
 				8C24D492191A49860091C044 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
