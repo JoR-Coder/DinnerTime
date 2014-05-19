@@ -10,6 +10,7 @@
 
 @interface ITHSFoodTableViewController ()
 @property (nonatomic) NSArray *foodList;
+@property (nonatomic) NSArray *foodSearchList;
 @property (strong, nonatomic) IBOutlet UITableView *foodTableView;
 
 @end
@@ -64,6 +65,16 @@
 }
 
 
+-(BOOL) searchDisplayController:(UISearchDisplayController*)controller shouldReloadTableForSearchString:(NSString*)searchString{
+	
+	NSPredicate *searchPredicate = [ NSPredicate predicateWithFormat:@"name contains[c] %@", searchString ];
+	
+	self.foodSearchList = [self.foodList filteredArrayUsingPredicate:searchPredicate];
+
+	return YES;
+}
+
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -75,17 +86,33 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
+	if (tableView == self.searchDisplayController.searchResultsTableView ) {
+		return self.foodSearchList.count;
+	} else {
+		return self.foodList.count;
+	}
     return self.foodList.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"foodCell" forIndexPath:indexPath];
+   // UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"foodCell" forIndexPath:indexPath];
     
     // Configure the cell...
-    cell.textLabel.text = self.foodList[indexPath.row][@"name"];
+    //cell.textLabel.text = self.foodList[indexPath.row][@"name"];
 	
+	UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"foodCell"];
+	
+	
+    // Configure the cell...
+	if (tableView == self.searchDisplayController.searchResultsTableView ) {
+		cell.textLabel.text = self.foodSearchList[indexPath.row][@"name"];
+	} else {
+		cell.textLabel.text = self.foodList[indexPath.row][@"name"];
+	}
+	
+
     return cell;
 }
 
