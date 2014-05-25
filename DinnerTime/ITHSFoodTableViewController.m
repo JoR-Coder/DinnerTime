@@ -160,10 +160,9 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 	if( [segue.identifier isEqualToString:@"DetailView"] ){
-		UINavigationController *navController = (UINavigationController *) segue.destinationViewController;
-//		ITHSContentViewController *contentView = [segue destinationViewController];
-		ITHSContentViewController *contentView = (ITHSContentViewController* ) navController.topViewController;
-		contentView.foodArticle = 144;
+		ITHSContentViewController *contentView = [segue destinationViewController];
+		
+		contentView.foodArticle = 44;
 	}
 }
 

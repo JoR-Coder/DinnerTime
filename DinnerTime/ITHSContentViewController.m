@@ -9,11 +9,19 @@
 #import "ITHSContentViewController.h"
 
 @interface ITHSContentViewController ()
+
 @property (weak, nonatomic) IBOutlet UILabel *foodArticleView;
+@property (nonatomic) 	NSDictionary *nutritionsList;
 
 @end
 
 @implementation ITHSContentViewController
+
+-(id)initWithArticle:(int)articleNumber{
+	
+	return nil;
+}
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,6 +37,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 	self.foodArticleView.text = [NSString stringWithFormat:@"Näringsvärden att hämta från : %d", self.foodArticle ];
+	[self loadData:self.foodArticle];
 }
 
 - (void)didReceiveMemoryWarning
@@ -36,6 +45,27 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+-(void) loadData:(int)articleNumber{
+	
+	NSString *urlStr = [NSString stringWithFormat:@"http://matapi.se/foodstuff/%d", articleNumber];
+
+	NSURL *URL = [NSURL URLWithString:urlStr];
+	NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+	NSURLSession *session = [NSURLSession sharedSession];
+	
+	
+	NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:
+								  ^(NSData *data, NSURLResponse *response, NSError *err){
+									  NSError *parseError;
+									  self.nutritionsList = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&parseError];
+									  NSLog(@"%@", self.nutritionsList);
+									  self.foodArticleView.text = self.nutritionsList[@"name"];
+								  }];
+	[task resume];
+}
+
 
 /*
 #pragma mark - Navigation
