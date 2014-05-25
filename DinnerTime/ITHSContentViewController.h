@@ -12,6 +12,4 @@
 
 @property (nonatomic) int foodArticle;
 
--(id) initWithArticle:(int) articleNumber;
-
 @end
