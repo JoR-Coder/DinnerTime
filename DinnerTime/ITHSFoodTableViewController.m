@@ -7,6 +7,7 @@
 //
 
 #import "ITHSFoodTableViewController.h"
+#import "ITHSContentViewController.h"
 
 @interface ITHSFoodTableViewController ()
 @property (nonatomic) NSArray *foodList;
@@ -96,12 +97,7 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-   // UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"foodCell" forIndexPath:indexPath];
-    
-    // Configure the cell...
-    //cell.textLabel.text = self.foodList[indexPath.row][@"name"];
-	
+{	
 	UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"foodCell"];
 	
 	
@@ -155,7 +151,7 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -163,7 +159,13 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+	if( [segue.identifier isEqualToString:@"DetailView"] ){
+		UINavigationController *navController = (UINavigationController *) segue.destinationViewController;
+//		ITHSContentViewController *contentView = [segue destinationViewController];
+		ITHSContentViewController *contentView = (ITHSContentViewController* ) navController.topViewController;
+		contentView.foodArticle = 144;
+	}
 }
-*/
+
 
 @end

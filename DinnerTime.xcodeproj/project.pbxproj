@@ -22,6 +22,7 @@
 		8C24D480191A49860091C044 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C24D462191A49850091C044 /* UIKit.framework */; };
 		8C24D488191A49860091C044 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8C24D486191A49860091C044 /* InfoPlist.strings */; };
 		8C24D48A191A49860091C044 /* DinnerTimeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C24D489191A49860091C044 /* DinnerTimeTests.m */; };
+		8CA549181931FE350032BACD /* ITHSContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA549171931FE350032BACD /* ITHSContentViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,8 @@
 		8C24D485191A49860091C044 /* DinnerTimeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DinnerTimeTests-Info.plist"; sourceTree = "<group>"; };
 		8C24D487191A49860091C044 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8C24D489191A49860091C044 /* DinnerTimeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DinnerTimeTests.m; sourceTree = "<group>"; };
+		8CA549161931FE350032BACD /* ITHSContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITHSContentViewController.h; sourceTree = "<group>"; };
+		8CA549171931FE350032BACD /* ITHSContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITHSContentViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +127,8 @@
 				8C24D465191A49850091C044 /* Supporting Files */,
 				8C092389192950710038D7C7 /* ITHSFoodTableViewController.h */,
 				8C09238A192950710038D7C7 /* ITHSFoodTableViewController.m */,
+				8CA549161931FE350032BACD /* ITHSContentViewController.h */,
+				8CA549171931FE350032BACD /* ITHSContentViewController.m */,
 			);
 			path = DinnerTime;
 			sourceTree = "<group>";
@@ -259,6 +264,7 @@
 				8C24D475191A49860091C044 /* ITHSViewController.m in Sources */,
 				8C24D46B191A49860091C044 /* main.m in Sources */,
 				8C09238B192950710038D7C7 /* ITHSFoodTableViewController.m in Sources */,
+				8CA549181931FE350032BACD /* ITHSContentViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

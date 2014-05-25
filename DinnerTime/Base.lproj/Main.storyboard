@@ -213,7 +213,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="MLd-qM-o9f" kind="push" id="E6o-0k-6wA"/>
+                                    <segue destination="MLd-qM-o9f" kind="push" identifier="DetailView" id="E6o-0k-6wA"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -239,12 +239,12 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1324" y="-391"/>
+            <point key="canvasLocation" x="1332" y="-422"/>
         </scene>
-        <!--View Controller - Content-->
+        <!--Content View Controller - Content-->
         <scene sceneID="GYS-Hv-6LS">
             <objects>
-                <viewController id="MLd-qM-o9f" sceneMemberID="viewController">
+                <viewController id="MLd-qM-o9f" customClass="ITHSContentViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mgt-8V-fpg"/>
                         <viewControllerLayoutGuide type="bottom" id="cOS-3I-wdh"/>
@@ -252,9 +252,21 @@
                     <view key="view" contentMode="scaleToFill" id="zIV-aO-QA2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bRV-yK-kFy">
+                                <rect key="frame" x="139" y="229" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Content" id="HMc-Bk-Z8E"/>
+                    <connections>
+                        <outlet property="foodArticleView" destination="bRV-yK-kFy" id="6lp-DV-NGw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bgo-lA-1lK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
