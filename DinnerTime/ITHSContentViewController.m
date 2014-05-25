@@ -12,6 +12,11 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *foodArticleView;
 @property (nonatomic) 	NSDictionary *nutritionsList;
+@property (weak, nonatomic) IBOutlet UILabel *vitaminCView;
+@property (weak, nonatomic) IBOutlet UILabel *fatView;
+@property (weak, nonatomic) IBOutlet UILabel *proteinView;
+@property (weak, nonatomic) IBOutlet UILabel *energyView;
+
 
 @end
 
@@ -60,8 +65,25 @@
 								  ^(NSData *data, NSURLResponse *response, NSError *err){
 									  NSError *parseError;
 									  self.nutritionsList = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&parseError];
-									  NSLog(@"%@", self.nutritionsList);
-									  self.foodArticleView.text = self.nutritionsList[@"name"];
+									  // NSLog(@"%@", self.nutritionsList);
+									  if ([self.nutritionsList objectForKey:@"name"]) {
+										  self.foodArticleView.text = self.nutritionsList[@"name"];
+										  self.navigationItem.title = [NSString stringWithFormat:@"Artikle nr:%i",articleNumber];
+										  NSDictionary *nutrients = self.nutritionsList[@"nutrientValues"];
+										  
+										  self.vitaminCView.text    = [NSString stringWithFormat:@"%@", nutrients[@"vitaminC"] ];
+										  self.fatView.text         = [NSString stringWithFormat:@"%@", nutrients[@"fat"] ];
+										  self.proteinView.text     = [NSString stringWithFormat:@"%@", nutrients[@"protein"] ];
+										  self.self.energyView.text = [NSString stringWithFormat:@"%@", nutrients[@"energyKj"] ];
+										  //for (NSString *key in [nutrients allKeys] ) {
+										//	  NSLog( @"%@ : %@", key, [nutrients objectForKey:key] );
+										  //}
+									  }else if ([self.nutritionsList objectForKey:@"message"]){
+										  self.foodArticleView.text = self.nutritionsList[@"message"];
+									  }else{
+										  self.foodArticleView.text = @"Unknown error!";
+									  }
+									  
 								  }];
 	[task resume];
 }
