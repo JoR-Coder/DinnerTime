@@ -67,17 +67,16 @@
 									  self.nutritionsList = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&parseError];
 									  // NSLog(@"%@", self.nutritionsList);
 									  if ([self.nutritionsList objectForKey:@"name"]) {
-										  self.foodArticleView.text = self.nutritionsList[@"name"];
-										  self.navigationItem.title = [NSString stringWithFormat:@"Artikle nr:%i",articleNumber];
-										  NSDictionary *nutrients = self.nutritionsList[@"nutrientValues"];
+										  dispatch_async(dispatch_get_main_queue(), ^{
+										    self.foodArticleView.text = self.nutritionsList[@"name"];
+										    self.navigationItem.title = [NSString stringWithFormat:@"Artikle nr:%i",articleNumber];
+										    NSDictionary *nutrients = self.nutritionsList[@"nutrientValues"];
 										  
-										  self.vitaminCView.text    = [NSString stringWithFormat:@"%@", nutrients[@"vitaminC"] ];
-										  self.fatView.text         = [NSString stringWithFormat:@"%@", nutrients[@"fat"] ];
-										  self.proteinView.text     = [NSString stringWithFormat:@"%@", nutrients[@"protein"] ];
-										  self.self.energyView.text = [NSString stringWithFormat:@"%@", nutrients[@"energyKj"] ];
-										  //for (NSString *key in [nutrients allKeys] ) {
-										//	  NSLog( @"%@ : %@", key, [nutrients objectForKey:key] );
-										  //}
+										    self.vitaminCView.text    = [NSString stringWithFormat:@"%@", nutrients[@"vitaminC"] ];
+										    self.fatView.text         = [NSString stringWithFormat:@"%@", nutrients[@"fat"] ];
+										    self.proteinView.text     = [NSString stringWithFormat:@"%@", nutrients[@"protein"] ];
+										    self.self.energyView.text = [NSString stringWithFormat:@"%@", nutrients[@"energyKj"] ];
+										  });
 									  }else if ([self.nutritionsList objectForKey:@"message"]){
 										  self.foodArticleView.text = self.nutritionsList[@"message"];
 									  }else{
