@@ -162,7 +162,13 @@
 	if( [segue.identifier isEqualToString:@"DetailView"] ){
 		ITHSContentViewController *contentView = [segue destinationViewController];
 		
-		contentView.foodArticle = 44;
+		UITableViewCell *cell= sender;
+		
+		NSString * foodArticle = cell.textLabel.text;
+		NSArray *filtered = [self.foodList filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"name == %@", foodArticle] ];
+		NSDictionary *item = [filtered objectAtIndex:0];
+
+		contentView.foodArticle = [item[@"number"] integerValue];
 	}
 }
 
