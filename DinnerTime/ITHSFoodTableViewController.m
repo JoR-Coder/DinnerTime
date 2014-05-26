@@ -36,8 +36,7 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-
-	[self loadData];
+		[self loadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,7 +49,6 @@
 
 // TODO: Errorcheck... No good idea to have foodList nil.
 -(void) loadData{
-	
 	NSString *urlStr = @"http://matapi.se/foodstuff";
 	NSURL *URL = [NSURL URLWithString:urlStr];
 	NSURLRequest *request = [NSURLRequest requestWithURL:URL];
@@ -60,7 +58,10 @@
 								  ^(NSData *data, NSURLResponse *response, NSError *err){
 									  NSError *parseError;
 									  self.foodList = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&parseError];
-									  [self.foodTableView reloadData];
+									  dispatch_async(dispatch_get_main_queue(), ^{
+										  [self.foodTableView reloadData];
+									  });
+
 								  }];
 	[task resume];
 }
@@ -172,5 +173,8 @@
 	}
 }
 
+- (IBAction)goBack:(id)sender {
+	[self.navigationController popViewControllerAnimated:YES];
+}
 
 @end
