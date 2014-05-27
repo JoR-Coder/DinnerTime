@@ -7,6 +7,7 @@
 //
 
 #import "ITHSContentViewController.h"
+#import "Nutrient.h"
 
 @interface ITHSContentViewController ()
 
@@ -25,6 +26,7 @@
 @property (nonatomic) 	NSDictionary *nutritionsList;
 @property (nonatomic) 	NSDictionary *RDIList;
 
+@property (nonatomic) BOOL added2Favorite;
 @end
 
 @implementation ITHSContentViewController
@@ -269,6 +271,24 @@
 		}
 	}
 
+}
+
+
+- (IBAction)add2Favorite:(id)sender {
+	NSLog(@"Add this to favv");
+	NSLog(@"Step 1. chech if NSUserDefaults");
+
+	NSLog(@"Step ");
+
+	NSLog(@"Step ");
+
+	NSLog(@"Step ");
+
+	NSLog(@"Step ");
+
+	NSLog(@"Step ");
+	
+	
 }
 
 /*

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ITHSContentViewController : UIViewController
+@interface ITHSContentViewController : UIViewController <UITabBarControllerDelegate>
 
 @property (nonatomic) int foodArticle;
 
