@@ -14,7 +14,7 @@
 @property (nonatomic) NSString *description;
 @property (nonatomic) NSString *imagePath;
 
--(void) initWithArticleNumber:(int)articleNr andDescription:(NSString *)description;
+-(instancetype) initWithArticleNumber:(int)articleNr andDescription:(NSString *)description;
 
 -(void) setImage:(NSString*)imagePath;
 

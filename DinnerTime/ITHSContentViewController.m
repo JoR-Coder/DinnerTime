@@ -27,6 +27,7 @@
 @property (nonatomic) 	NSDictionary *RDIList;
 
 @property (nonatomic) BOOL added2Favorite;
+
 @end
 
 @implementation ITHSContentViewController
@@ -276,17 +277,27 @@
 
 - (IBAction)add2Favorite:(id)sender {
 	NSLog(@"Add this to favv");
-	NSLog(@"Step 1. chech if NSUserDefaults");
+	NSLog(@"Step 1. check if NSUserDefaults");
 
-	NSLog(@"Step ");
+	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+	Nutrient *nutrient = [prefs objectForKey:@"nutrient"];
+	
+	if (nutrient == nil) {
+		NSLog(@"Step 2a. if nothing... create");
+	} else {
+		NSLog(@"Step 2b. if something... react");
+		Nutrient *newEntry = [[Nutrient alloc] initWithArticleNumber:self.foodArticle andDescription:@"Edit me..."];
+		[prefs setObject:newEntry forKey:@"nutrient"];
+	}
+	
 
-	NSLog(@"Step ");
+	//NSLog(@"Step ");
 
-	NSLog(@"Step ");
+	//NSLog(@"Step ");
 
-	NSLog(@"Step ");
+	//NSLog(@"Step ");
 
-	NSLog(@"Step ");
+	//NSLog(@"Step ");
 	
 	
 }

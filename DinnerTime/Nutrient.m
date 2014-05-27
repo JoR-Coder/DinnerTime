@@ -10,11 +10,17 @@
 
 @implementation Nutrient
 
--(void) initWithArticleNumber:(int)articleNr andDescription:(NSString *)description{
+-(instancetype) initWithArticleNumber:(int)articleNr andDescription:(NSString *)description{
+	self = [ super init];
+	
+	if (self ) {
+		self.articleNumber = articleNr;
+		self.description = description;
+		self.imagePath = nil;
+	}
+	
+	return self;
 
-	self.articleNumber = articleNr;
-	self.description = description;
-	self.imagePath = nil;
 }
 
 -(void) setImage:(NSString*)imagePath{
