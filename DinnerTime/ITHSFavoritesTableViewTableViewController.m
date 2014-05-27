@@ -7,6 +7,10 @@
 //
 
 #import "ITHSFavoritesTableViewTableViewController.h"
+#import "ITHSEditViewViewController.h"
+#import "ITHSFavoriteCell.h"
+
+
 
 @interface ITHSFavoritesTableViewTableViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *favoriteTableView;
@@ -37,30 +41,15 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 
 	dispatch_async(dispatch_get_main_queue(), ^{
-		NSLog(@"Step 1. check if NSUserDefaults");
 		
 		NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
 		self.favoriteList = [ NSMutableArray arrayWithArray:[prefs objectForKey:@"nutrients"] ];
 		
 		if ( self.favoriteList == nil) {
-			NSLog(@"Step 2a. if nothing... create it. It'll be a blank list :-/");
 			self.favoriteList = [[NSMutableArray alloc] init];
-			
-			NSLog(@"Step 2a. if nothing... Atleast create an empty one...");
 			
 			[prefs setObject:self.favoriteList forKey:@"nutrients"];
 			[prefs synchronize];
-			
-			
-		} else {
-			NSLog(@"Step 2b. if something... react");
-			
-			if (self.favoriteList.count>0) {
-				NSLog(@"Got Stuff we're done :)" );
-			} else {
-				NSLog(@"Got Nothing from userDefaults... It'll be a blank table :-/" );
-			}
-			
 		}
 		
 		[self.favoriteTableView reloadData];
@@ -68,12 +57,6 @@
 
 
 }
-
--(void)viewWillAppear:(BOOL)animated{
-
-
-}
-
 
 - (void)didReceiveMemoryWarning
 {
@@ -98,14 +81,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"favoriteCell" forIndexPath:indexPath];
-    
-    // Configure the cell...
-	NSString *txt = [NSString stringWithFormat:@"ArtNr:%@ - %@", [self.favoriteList[indexPath.row] objectForKey:@"articleNumber" ],
-					 [self.favoriteList[indexPath.row] objectForKey:@"description" ]];
+	ITHSFavoriteCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"favoriteCell"];
 	
-	cell.textLabel.text = txt;
-    
+	cell.articleNumberLabel.text   = [NSString stringWithFormat:@"%@", [self.favoriteList[indexPath.row] objectForKey:@"articleNumber" ]];
+	cell.descriptionTextField.text = [NSString stringWithFormat:@"%@", [self.favoriteList[indexPath.row] objectForKey:@"description" ]];
+	
     return cell;
 }
 
@@ -148,16 +128,25 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
+	// Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+
+	if( [segue.identifier isEqualToString:@"editView"] ){
+		ITHSFavoriteCell *cell= sender;
+
+		ITHSEditViewViewController *editView = [segue destinationViewController];
+		editView.articleNr = [cell.articleNumberLabel.text integerValue];
+	}
 }
-*/
+
+
+
 - (IBAction)goBack:(id)sender {
 	[self.navigationController popViewControllerAnimated:YES];
 }

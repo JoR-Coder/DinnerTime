@@ -10,6 +10,7 @@
 #import "ITHSContentViewController.h"
 
 @interface ITHSFoodTableViewController ()
+
 @property (nonatomic) NSArray *foodList;
 @property (nonatomic) NSArray *foodSearchList;
 @property (strong, nonatomic) IBOutlet UITableView *foodTableView;

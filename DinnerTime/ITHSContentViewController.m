@@ -275,58 +275,32 @@
 
 
 - (IBAction)add2Favorite:(id)sender {
-	NSLog(@"Add this to favv");
-	NSLog(@"Step 1. check if NSUserDefaults");
 
-//	NSInteger vafan = self.foodArticle;
-	
 	NSDictionary *Favorite = @{ @"articleNumber" : [NSNumber numberWithInteger:self.foodArticle],
-								   @"description"   : @"Add description here...",
+								   @"description"   : self.nutritionsList[@"name"],
 								   @"imagePath"     : @" " };
 
 	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
 	NSMutableArray *nutrients = [ NSMutableArray arrayWithArray:[prefs objectForKey:@"nutrients"] ];
 	
 	if ( nutrients == nil) {
-		NSLog(@"Step 2a. if nothing... creating");
 		NSMutableArray *newNutrients = [[NSMutableArray alloc] init];
 		
 		[newNutrients addObject: Favorite ];
 		
-		
-		
-		NSLog(@"Step 2a. if nothing... saving...");
-		
 		[prefs setObject:newNutrients forKey:@"nutrients"];
 		[prefs synchronize];
-		
-		
-		
+
 	} else {
-		NSLog(@"Step 2b. if something... react");
-		
 		if (nutrients.count>0) {
-			NSLog(@"Adding stuff" );
-			[nutrients addObject: Favorite ];
-
-			[prefs setObject:nutrients forKey:@"nutrients"];
-			[prefs synchronize];
-
-		} else {
-			NSLog(@"Got Nothing from userDefaults... Adding" );
-			NSMutableArray *newNutrients = [[NSMutableArray alloc] init];
+			//search...
 			
-			[newNutrients addObject: Favorite ];
-			
-			
-			
-			NSLog(@"Step 2a. if nothing... saving...");
-			
-			[prefs setObject:newNutrients forKey:@"nutrients"];
-			[prefs synchronize];
-
 		}
-		
+		[nutrients addObject: Favorite ];
+
+		[prefs setObject:nutrients forKey:@"nutrients"];
+		[prefs synchronize];
+
 	}	
 	
 }
