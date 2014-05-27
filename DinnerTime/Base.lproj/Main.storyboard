@@ -135,11 +135,12 @@
         <!--Favorites-->
         <scene sceneID="ULJ-xU-Sxf">
             <objects>
-                <tableViewController id="shU-eS-nMv" userLabel="Favorites" sceneMemberID="viewController">
+                <tableViewController id="shU-eS-nMv" userLabel="Favorites" customClass="ITHSFavoritesTableViewTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="sXd-3w-rGG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="favoriteCell" id="NRB-48-b3j">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
@@ -156,11 +157,20 @@
                         <connections>
                             <outlet property="dataSource" destination="shU-eS-nMv" id="HW4-qY-lnb"/>
                             <outlet property="delegate" destination="shU-eS-nMv" id="HYi-Z5-Ecc"/>
+                            <outletCollection property="gestureRecognizers" destination="AIn-sa-0Tt" appends="YES" id="QA2-Hh-jJV"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Favorites" id="Kp5-QA-Gua"/>
+                    <connections>
+                        <outlet property="favoriteTableView" destination="sXd-3w-rGG" id="Ttt-k5-qdm"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QCw-Ik-390" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="AIn-sa-0Tt">
+                    <connections>
+                        <action selector="goBack:" destination="shU-eS-nMv" id="BLg-jc-kua"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1332" y="225"/>
         </scene>
@@ -183,10 +193,10 @@
             </objects>
             <point key="canvasLocation" x="1731" y="300"/>
         </scene>
-        <!--Food Table View Controller - Browse-->
+        <!--Browse-->
         <scene sceneID="VQg-NB-ycI">
             <objects>
-                <tableViewController id="7kz-Gi-cQS" customClass="ITHSFoodTableViewController" sceneMemberID="viewController">
+                <tableViewController id="7kz-Gi-cQS" userLabel="Browse" customClass="ITHSFoodTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ocE-2o-sxn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -306,7 +306,12 @@
 		NSLog(@"Step 2b. if something... react");
 		
 		if (nutrients.count>0) {
-			NSLog(@"Got this from userDefaults... %@", nutrients );
+			NSLog(@"Adding stuff" );
+			[nutrients addObject: Favorite ];
+
+			[prefs setObject:nutrients forKey:@"nutrients"];
+			[prefs synchronize];
+
 		} else {
 			NSLog(@"Got Nothing from userDefaults... Adding" );
 			NSMutableArray *newNutrients = [[NSMutableArray alloc] init];
@@ -322,17 +327,7 @@
 
 		}
 		
-	}
-	
-
-	//NSLog(@"Step ");
-
-	//NSLog(@"Step ");
-
-	//NSLog(@"Step ");
-
-	//NSLog(@"Step ");
-	
+	}	
 	
 }
 

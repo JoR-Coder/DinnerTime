@@ -9,6 +9,9 @@
 #import "ITHSFavoritesTableViewTableViewController.h"
 
 @interface ITHSFavoritesTableViewTableViewController ()
+@property (strong, nonatomic) IBOutlet UITableView *favoriteTableView;
+
+@property (nonatomic) NSArray *favoriteList;
 
 @end
 
@@ -32,7 +35,45 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
+	dispatch_async(dispatch_get_main_queue(), ^{
+		NSLog(@"Step 1. check if NSUserDefaults");
+		
+		NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+		self.favoriteList = [ NSMutableArray arrayWithArray:[prefs objectForKey:@"nutrients"] ];
+		
+		if ( self.favoriteList == nil) {
+			NSLog(@"Step 2a. if nothing... create it. It'll be a blank list :-/");
+			self.favoriteList = [[NSMutableArray alloc] init];
+			
+			NSLog(@"Step 2a. if nothing... Atleast create an empty one...");
+			
+			[prefs setObject:self.favoriteList forKey:@"nutrients"];
+			[prefs synchronize];
+			
+			
+		} else {
+			NSLog(@"Step 2b. if something... react");
+			
+			if (self.favoriteList.count>0) {
+				NSLog(@"Got Stuff we're done :)" );
+			} else {
+				NSLog(@"Got Nothing from userDefaults... It'll be a blank table :-/" );
+			}
+			
+		}
+		
+		[self.favoriteTableView reloadData];
+	});
+
+
 }
+
+-(void)viewWillAppear:(BOOL)animated{
+
+
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -51,19 +92,23 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 0;
+    return self.favoriteList.count;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"favoriteCell" forIndexPath:indexPath];
     
     // Configure the cell...
+	NSString *txt = [NSString stringWithFormat:@"ArtNr:%@ - %@", [self.favoriteList[indexPath.row] objectForKey:@"articleNumber" ],
+					 [self.favoriteList[indexPath.row] objectForKey:@"description" ]];
+	
+	cell.textLabel.text = txt;
     
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.
@@ -113,5 +158,11 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (IBAction)goBack:(id)sender {
+	[self.navigationController popViewControllerAnimated:YES];
+}
+
+
+
 
 @end
