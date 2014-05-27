@@ -7,7 +7,6 @@
 //
 
 #import "ITHSContentViewController.h"
-#import "Nutrient.h"
 
 @interface ITHSContentViewController ()
 
@@ -279,15 +278,50 @@
 	NSLog(@"Add this to favv");
 	NSLog(@"Step 1. check if NSUserDefaults");
 
-	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-	Nutrient *nutrient = [prefs objectForKey:@"nutrient"];
+//	NSInteger vafan = self.foodArticle;
 	
-	if (nutrient == nil) {
-		NSLog(@"Step 2a. if nothing... create");
+	NSDictionary *Favorite = @{ @"articleNumber" : [NSNumber numberWithInteger:self.foodArticle],
+								   @"description"   : @"Add description here...",
+								   @"imagePath"     : @" " };
+
+	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+	NSMutableArray *nutrients = [ NSMutableArray arrayWithArray:[prefs objectForKey:@"nutrients"] ];
+	
+	if ( nutrients == nil) {
+		NSLog(@"Step 2a. if nothing... creating");
+		NSMutableArray *newNutrients = [[NSMutableArray alloc] init];
+		
+		[newNutrients addObject: Favorite ];
+		
+		
+		
+		NSLog(@"Step 2a. if nothing... saving...");
+		
+		[prefs setObject:newNutrients forKey:@"nutrients"];
+		[prefs synchronize];
+		
+		
+		
 	} else {
 		NSLog(@"Step 2b. if something... react");
-		Nutrient *newEntry = [[Nutrient alloc] initWithArticleNumber:self.foodArticle andDescription:@"Edit me..."];
-		[prefs setObject:newEntry forKey:@"nutrient"];
+		
+		if (nutrients.count>0) {
+			NSLog(@"Got this from userDefaults... %@", nutrients );
+		} else {
+			NSLog(@"Got Nothing from userDefaults... Adding" );
+			NSMutableArray *newNutrients = [[NSMutableArray alloc] init];
+			
+			[newNutrients addObject: Favorite ];
+			
+			
+			
+			NSLog(@"Step 2a. if nothing... saving...");
+			
+			[prefs setObject:newNutrients forKey:@"nutrients"];
+			[prefs synchronize];
+
+		}
+		
 	}
 	
 

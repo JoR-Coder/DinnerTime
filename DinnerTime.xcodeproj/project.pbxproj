@@ -23,7 +23,6 @@
 		8C24D488191A49860091C044 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8C24D486191A49860091C044 /* InfoPlist.strings */; };
 		8C24D48A191A49860091C044 /* DinnerTimeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C24D489191A49860091C044 /* DinnerTimeTests.m */; };
 		8CA549181931FE350032BACD /* ITHSContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA549171931FE350032BACD /* ITHSContentViewController.m */; };
-		8CA5499D1934A5290032BACD /* Nutrient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA5499C1934A5290032BACD /* Nutrient.m */; };
 		8CA549A01934A5940032BACD /* ITHSFavoritesTableViewTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA5499F1934A5940032BACD /* ITHSFavoritesTableViewTableViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -61,8 +60,6 @@
 		8C24D489191A49860091C044 /* DinnerTimeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DinnerTimeTests.m; sourceTree = "<group>"; };
 		8CA549161931FE350032BACD /* ITHSContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITHSContentViewController.h; sourceTree = "<group>"; };
 		8CA549171931FE350032BACD /* ITHSContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITHSContentViewController.m; sourceTree = "<group>"; };
-		8CA5499B1934A5290032BACD /* Nutrient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Nutrient.h; sourceTree = "<group>"; };
-		8CA5499C1934A5290032BACD /* Nutrient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Nutrient.m; sourceTree = "<group>"; };
 		8CA5499E1934A5940032BACD /* ITHSFavoritesTableViewTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITHSFavoritesTableViewTableViewController.h; sourceTree = "<group>"; };
 		8CA5499F1934A5940032BACD /* ITHSFavoritesTableViewTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITHSFavoritesTableViewTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -130,8 +127,6 @@
 				8C24D470191A49860091C044 /* Main.storyboard */,
 				8C24D476191A49860091C044 /* Images.xcassets */,
 				8C24D465191A49850091C044 /* Supporting Files */,
-				8CA5499B1934A5290032BACD /* Nutrient.h */,
-				8CA5499C1934A5290032BACD /* Nutrient.m */,
 			);
 			path = DinnerTime;
 			sourceTree = "<group>";
@@ -281,7 +276,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8CA5499D1934A5290032BACD /* Nutrient.m in Sources */,
 				8C24D46F191A49860091C044 /* ITHSAppDelegate.m in Sources */,
 				8C24D475191A49860091C044 /* ITHSViewController.m in Sources */,
 				8C24D46B191A49860091C044 /* main.m in Sources */,
