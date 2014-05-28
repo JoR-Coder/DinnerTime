@@ -27,6 +27,11 @@
 
 @property (nonatomic) BOOL added2Favorite;
 
+@property UIDynamicAnimator *animator; // Holds all the behaviours.
+@property UIGravityBehavior *gravity;
+@property UICollisionBehavior *collision;
+@property UISnapBehavior *snap;
+
 @end
 
 @implementation ITHSContentViewController
@@ -85,11 +90,26 @@
 	 Planera milstolpar o jox
 	 1. Sinus-app
 	 2. RemoteFiles-app (backend hemma hos mig, python/php/laravel???)
-	 3.
+	 3. ?
  
+ 
+ Varför inte ett GUI till cocoa Pods? (hms... Eller en egen git)
+ 
+ github.com/trending?l=objective-c
+ 
+ Gå in i roten till ditt projekt, se till att den är stängd i XCode5
+ 
+ pod init
+ <redigera din PodFile>
+ pod install
+ starta genom att använda sig av nya ?.xcworkspace
+ 
+ Klart :)
  
  utvecklings@iths.se
  IThs2012
+ 
+ 
  */
 
 - (IBAction)goBack:(id)sender {
@@ -204,77 +224,64 @@
 	self.RDIList = rdi;
 }
 
+
+// stort tips... Nyttja colorWithHue istället.
+// Från 120 till 0 är alltså grönt -> gult -> rött.
+// Ta alltså procentsatsen RDI av 120 minus 120.
+// Eller i vårt fall... från 0.25 till noll.
+
 -(void) isItLSHFApproved:(NSString*) nutrition amount:(float) amount
 {
-	NSLog(@"Asking RDI for %f grams of %@", amount, nutrition);
+	// NSLog(@"Asking RDI for %f grams of %@", amount, nutrition);
 	
 	if ([nutrition isEqualToString:@"fat"]) {
 		float fatRDI = amount / [self.RDIList[@"fat"] floatValue];
-		if (fatRDI <= 0.5 ) {
-			self.Fatlevel.progress = fatRDI;
-		}
-		else if (fatRDI > 0.5 && fatRDI < 1 ) {
-			self.Fatlevel.progress = fatRDI;
-			self.fatView.backgroundColor = [UIColor orangeColor];
-			NSLog(@" %f fat of RDI", fatRDI);
-		} else{
-			self.Fatlevel.progress = 1;
-			self.fatView.backgroundColor = [UIColor redColor];
-			NSLog(@"Fat Maxed out.");
-		}
-	}
+		float hue = (0.25 - (fatRDI*0.25));
+
+		self.Fatlevel.progress = fatRDI;
+		self.fatView.backgroundColor = [UIColor colorWithHue:hue saturation:1.0 brightness:1.0 alpha:1.0];
+		NSLog(@"fatRDI=%f, hue = %f", fatRDI, hue);
+}
 	
 	if ([nutrition isEqualToString:@"magnesium"]) {
 		float magnesiumRDI = amount / [self.RDIList[@"magnesium"] floatValue];
-		if (magnesiumRDI <= 0.5 ) {
-			self.magnesiumLevel.progress = magnesiumRDI;
-		}
-		else if (magnesiumRDI > 0.5 && magnesiumRDI < 1 ) {
-			self.magnesiumLevel.progress = magnesiumRDI;
-			self.magnesiumView.backgroundColor = [UIColor orangeColor];
-			NSLog(@" %f magnesium of RDI", magnesiumRDI);
-		} else{
-			self.magnesiumLevel.progress = 1;
-			self.magnesiumView.backgroundColor = [UIColor redColor];
-			NSLog(@"Magnesium Maxed out.");
-		}
+		float hue = 0.25 - (magnesiumRDI*0.25);
+
+		self.magnesiumLevel.progress = magnesiumRDI;
+		self.magnesiumView.backgroundColor = [UIColor colorWithHue:hue saturation:1.0 brightness:1.0 alpha:1.0];
+		NSLog(@"magnesiumRDI=%f, hue = %f", magnesiumRDI, hue);
 	}
 	if ([nutrition isEqualToString:@"protein"]) {
 		float proteinRDI = amount / [self.RDIList[@"protein"] floatValue];
-		if (proteinRDI <= 0.5 ) {
-			self.ProteinLevel.progress = proteinRDI;
-		}
-		else if (proteinRDI > 0.5 && proteinRDI < 1 ) {
-			self.ProteinLevel.progress = proteinRDI;
-			self.proteinView.backgroundColor = [UIColor orangeColor];
-			NSLog(@" %f protein of RDI", proteinRDI);
-		} else{
-			self.ProteinLevel.progress = 1;
-			self.proteinView.backgroundColor = [UIColor redColor];
-			NSLog(@"Protein Maxed out.");
-		}
+		float hue = 0.25 - (proteinRDI*0.25);
+
+		self.ProteinLevel.progress = proteinRDI;
+		self.proteinView.backgroundColor = [UIColor colorWithHue:hue saturation:1.0 brightness:1.0 alpha:1.0];
+		NSLog(@"proteinRDI=%f, hue = %f", proteinRDI, hue);
 	}
 
 	if ([nutrition isEqualToString:@"saturatedFattyAcids"]) {
 		float sfaRDI = amount / [self.RDIList[@"saturatedFattyAcids"] floatValue];
-		if (sfaRDI <= 0.5 ) {
-			self.SaturatedFatLevel.progress = sfaRDI;
-		}
-		else if (sfaRDI > 0.5 && sfaRDI < 1 ) {
-			self.SaturatedFatLevel.progress = sfaRDI;
-			self.SaturatedFattyAcidsView.backgroundColor = [UIColor orangeColor];
-			NSLog(@" %f saturated fat of RDI", sfaRDI);
-		} else{
-			self.SaturatedFatLevel.progress = 1;
-			self.SaturatedFattyAcidsView.backgroundColor = [UIColor redColor];
-			NSLog(@"SFA Maxed out.");
-		}
+		float hue = 0.25 - (sfaRDI*0.25);
+
+		self.SaturatedFatLevel.progress = sfaRDI;
+		self.SaturatedFattyAcidsView.backgroundColor = [UIColor colorWithHue:hue saturation:1.0 brightness:1.0 alpha:1.0];
+		NSLog(@"Saturated fatty acids RDI=%f, hue = %f", sfaRDI, hue);
 	}
 
 }
 
 
 - (IBAction)add2Favorite:(id)sender {
+
+	[self animateSaved];
+	return;
+	
+	NSNumber *v1 = @10;
+	NSNumber *v2 = @12;
+	NSNumber *v3 = @( [v1 integerValue] +  [v2 integerValue] );
+	
+	NSLog(@"I got %@", v3);
 
 	NSDictionary *Favorite = @{ @"articleNumber" : [NSNumber numberWithInteger:self.foodArticle],
 								   @"description"   : self.nutritionsList[@"name"],
@@ -300,10 +307,73 @@
 
 		[prefs setObject:nutrients forKey:@"nutrients"];
 		[prefs synchronize];
-
-	}	
+	}
+	
 	
 }
+
+-(void)animateSaved{
+
+	UILabel *yourLabel = [[UILabel alloc] initWithFrame:CGRectMake(120, 100, 100, 20)];
+
+	[yourLabel setTextColor:[UIColor blackColor]];
+	[yourLabel setBackgroundColor:[UIColor clearColor]];
+	[yourLabel setFont:[UIFont fontWithName: @"Trebuchet MS" size: 14.0f]];
+	[yourLabel setText:@"I'm Adding"];
+	
+	[yourLabel setTextAlignment:NSTextAlignmentCenter];
+	
+	[self.view addSubview:yourLabel];
+	[self.view bringSubviewToFront:yourLabel];
+	
+	CGFloat screenWidth  = [[UIScreen mainScreen] bounds].size.width;
+	CGFloat screenHeight = [[UIScreen mainScreen] bounds].size.height;
+	CGSize statusBarSize = [[UIApplication sharedApplication] statusBarFrame].size;
+    int statusBarHeight = MIN(statusBarSize.width, statusBarSize.height);
+	
+	int navBarHeight     = self.navigationController.navigationBar.frame.size.height;
+	int yourLabelHeight = yourLabel.frame.size.height;
+	int yourLabelWidth  = yourLabel.frame.size.width;
+	
+	int viewTop;
+	int viewBottom;
+	int viewLeft;
+	int viewRight;
+	
+	if (([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) ||
+        ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight))
+	{
+		// NSLog(@"Landscape mode");
+		viewTop = (statusBarHeight*2)+(navBarHeight)+(yourLabelHeight/2);
+		viewRight        = screenHeight-statusBarHeight- (yourLabelWidth/2);
+		viewLeft         = statusBarHeight + (yourLabelWidth/2);
+		viewBottom       = screenWidth-statusBarHeight - (yourLabelHeight/2);
+		
+	} else {
+		// NSLog(@"Portrait mode!");
+		viewTop = (statusBarHeight*2)+(navBarHeight)+(yourLabelHeight/2);
+		viewRight        = screenWidth-statusBarHeight- (yourLabelWidth/2);
+		viewLeft         = statusBarHeight + (yourLabelWidth/2);
+		viewBottom       = screenHeight-statusBarHeight - (yourLabelHeight/2);
+	}
+	
+	// NSLog(@"Screen width = %f, height = %f", screenWidth, screenHeight);
+	
+//	CGPoint p_upperLeft  = { viewLeft ,    viewTop }; //  52, 96
+	CGPoint p_upperRight = { viewRight,    viewTop }; // 268, 96
+//	CGPoint p_lowerLeft  = { viewLeft , viewBottom };   //  52, 428
+	CGPoint p_lowerRight = { viewRight, viewBottom };   // 268, 428
+	
+	yourLabel.center = p_upperRight;
+	
+	[UIView animateWithDuration:1.2 animations:^{
+		yourLabel.center = p_lowerRight;
+	} completion:^(BOOL finished) {
+		[yourLabel removeFromSuperview];
+	}];
+
+}
+
 
 /*
 #pragma mark - Navigation

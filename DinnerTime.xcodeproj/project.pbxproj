@@ -26,6 +26,7 @@
 		8CA549A01934A5940032BACD /* ITHSFavoritesTableViewTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA5499F1934A5940032BACD /* ITHSFavoritesTableViewTableViewController.m */; };
 		8CA549A91934FC250032BACD /* ITHSEditViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA549A81934FC250032BACD /* ITHSEditViewViewController.m */; };
 		8CA549ED19354D7E0032BACD /* ITHSFavoriteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA549EC19354D7E0032BACD /* ITHSFavoriteCell.m */; };
+		8CA549F0193615410032BACD /* ITHSInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA549EF193615410032BACD /* ITHSInfoViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,8 @@
 		8CA549A81934FC250032BACD /* ITHSEditViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITHSEditViewViewController.m; sourceTree = "<group>"; };
 		8CA549EB19354D7E0032BACD /* ITHSFavoriteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITHSFavoriteCell.h; sourceTree = "<group>"; };
 		8CA549EC19354D7E0032BACD /* ITHSFavoriteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITHSFavoriteCell.m; sourceTree = "<group>"; };
+		8CA549EE193615410032BACD /* ITHSInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITHSInfoViewController.h; sourceTree = "<group>"; };
+		8CA549EF193615410032BACD /* ITHSInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITHSInfoViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +138,8 @@
 				8C24D465191A49850091C044 /* Supporting Files */,
 				8CA549EB19354D7E0032BACD /* ITHSFavoriteCell.h */,
 				8CA549EC19354D7E0032BACD /* ITHSFavoriteCell.m */,
+				8CA549EE193615410032BACD /* ITHSInfoViewController.h */,
+				8CA549EF193615410032BACD /* ITHSInfoViewController.m */,
 			);
 			path = DinnerTime;
 			sourceTree = "<group>";
@@ -290,6 +295,7 @@
 				8C24D475191A49860091C044 /* ITHSViewController.m in Sources */,
 				8C24D46B191A49860091C044 /* main.m in Sources */,
 				8C09238B192950710038D7C7 /* ITHSFoodTableViewController.m in Sources */,
+				8CA549F0193615410032BACD /* ITHSInfoViewController.m in Sources */,
 				8CA549181931FE350032BACD /* ITHSContentViewController.m in Sources */,
 				8CA549ED19354D7E0032BACD /* ITHSFavoriteCell.m in Sources */,
 				8CA549A01934A5940032BACD /* ITHSFavoritesTableViewTableViewController.m in Sources */,

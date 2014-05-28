@@ -465,10 +465,10 @@
             </objects>
             <point key="canvasLocation" x="1731" y="-350"/>
         </scene>
-        <!--View Controller - Info-->
+        <!--Info View Controller - Info-->
         <scene sceneID="zeK-ha-5h5">
             <objects>
-                <viewController id="B0D-tG-DG6" sceneMemberID="viewController">
+                <viewController id="B0D-tG-DG6" customClass="ITHSInfoViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZHN-Ng-5Ez"/>
                         <viewControllerLayoutGuide type="bottom" id="EfQ-uX-5IG"/>
@@ -485,10 +485,19 @@
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="rtS-xS-t1f" appends="YES" id="LUF-1r-3hb"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Info" id="77k-up-XYs"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Upn-w5-ceO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="rtS-xS-t1f">
+                    <connections>
+                        <action selector="goBack:" destination="B0D-tG-DG6" id="BlU-nK-bfY"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="882" y="225"/>
         </scene>
