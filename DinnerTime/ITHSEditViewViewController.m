@@ -7,9 +7,12 @@
 //
 
 #import "ITHSEditViewViewController.h"
+// #import "ImageUtils.h"
 
 @interface ITHSEditViewViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *articleNumberLabel;
+@property (weak, nonatomic) IBOutlet UIButton *updateButton;
+@property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 
 @end
 
@@ -29,6 +32,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 	self.articleNumberLabel.text = [NSString stringWithFormat:@"Article: %d", self.articleNr];
+	
+	//[self.deleteButton ];
 }
 
 - (void)didReceiveMemoryWarning

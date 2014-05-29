@@ -135,11 +135,9 @@
 				8C24D46E191A49860091C044 /* ITHSAppDelegate.m */,
 				8C24D470191A49860091C044 /* Main.storyboard */,
 				8C24D476191A49860091C044 /* Images.xcassets */,
-				8C24D465191A49850091C044 /* Supporting Files */,
 				8CA549EB19354D7E0032BACD /* ITHSFavoriteCell.h */,
 				8CA549EC19354D7E0032BACD /* ITHSFavoriteCell.m */,
-				8CA549EE193615410032BACD /* ITHSInfoViewController.h */,
-				8CA549EF193615410032BACD /* ITHSInfoViewController.m */,
+				8C24D465191A49850091C044 /* Supporting Files */,
 			);
 			path = DinnerTime;
 			sourceTree = "<group>";
@@ -176,6 +174,8 @@
 		8CA549A11934A5A40032BACD /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8CA549EE193615410032BACD /* ITHSInfoViewController.h */,
+				8CA549EF193615410032BACD /* ITHSInfoViewController.m */,
 				8C24D473191A49860091C044 /* ITHSViewController.h */,
 				8C24D474191A49860091C044 /* ITHSViewController.m */,
 				8C092389192950710038D7C7 /* ITHSFoodTableViewController.h */,
