@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ITHSEditViewViewController : UIViewController
+@interface ITHSEditViewViewController : UIViewController  <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic) int articleNr;
 
