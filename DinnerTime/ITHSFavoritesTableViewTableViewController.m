@@ -87,12 +87,64 @@
 {
 	ITHSFavoriteCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"favoriteCell"];
 	
-	cell.articleNumberLabel.text   = [NSString stringWithFormat:@"%@", [self.favoriteList[indexPath.row] objectForKey:@"articleNumber" ]];
+	int articleNr = [[self.favoriteList[indexPath.row] objectForKey:@"articleNumber"] integerValue];
+	
+	cell.articleNumberLabel.text   = [NSString stringWithFormat:@"%d", articleNr];
 	cell.descriptionTextField.text = [NSString stringWithFormat:@"%@", [self.favoriteList[indexPath.row] objectForKey:@"description" ]];
+	
+	
+	NSString *filename = [NSString stringWithFormat:@"%d-foodFavSnapshot", articleNr ];
+	UIImage *image = [ UIImage imageWithContentsOfFile:[self imagePath:filename] ];
+	
+	if (image) {
+		CGSize scaleSize = CGSizeMake(71.0, 59.0);
+		UIGraphicsBeginImageContextWithOptions(scaleSize, NO, 0.0);
+		[image drawInRect:CGRectMake(0, 0, scaleSize.width, scaleSize.height)];
+		UIImage *resizedImage = UIGraphicsGetImageFromCurrentImageContext();
+		[cell.snapshotImageView setImage:resizedImage];
+		
+		// cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
+		// cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
+		// cell.imageView.contentMode = UIViewContentModeScaleToFill;
+	} else {
+		[cell.snapshotImageView setImage: [self getFoodTypeImage:articleNr] ];
+	}
 	
     return cell;
 }
 
+
+-(UIImage*) getFoodTypeImage:(int)id{
+	// Cheese, corn, loaf    , veggie,   ?
+	// 66-111,     , 162-222 , 299-489
+	
+	UIImage *imageType;
+	
+	//		NSLog(@"Index: %d got : %@", indexPath.row, self.foodList[indexPath.row][@"name"]);
+	if (id >= 66 && id <= 111) {
+		NSLog(@"Cheeses");
+		imageType = [UIImage imageNamed:@"cheese-green-72"];
+	} else if (id>=162 && id<=222){
+		imageType = [UIImage imageNamed:@"loaf-green-72"];
+	} else if (id>=299 && id<=489){
+		imageType = [UIImage imageNamed:@"veggie-green-72"];
+	} else {
+		imageType = [UIImage imageNamed:@"questionmark-green"];
+	}
+	
+	return imageType;
+}
+
+-(NSString *) imagePath:(NSString *)name{
+	NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES );
+	
+	NSString *documentsDirectory = path[0];
+	
+	NSString *imageName = [NSString stringWithFormat:@"%@.png", name ];
+	NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:imageName ];
+	
+	return imagePath;
+}
 
 /*
 // Override to support conditional editing of the table view.

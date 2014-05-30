@@ -47,7 +47,6 @@
 }
 
 
-
 // TODO: Errorcheck... No good idea to have foodList nil.
 -(void) loadData{
 	NSString *urlStr = @"http://matapi.se/foodstuff";
@@ -59,6 +58,7 @@
 								  ^(NSData *data, NSURLResponse *response, NSError *err){
 									  NSError *parseError;
 									  self.foodList = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&parseError];
+									  // NSLog(@"%@",self.foodList);
 									  dispatch_async(dispatch_get_main_queue(), ^{
 										  [self.foodTableView reloadData];
 									  });
@@ -102,18 +102,40 @@
 {	
 	UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"foodCell"];
 	
-	
     // Configure the cell...
 	if (tableView == self.searchDisplayController.searchResultsTableView ) {
 		cell.textLabel.text = self.foodSearchList[indexPath.row][@"name"];
+		int number = [self.foodSearchList[indexPath.row][@"number"] integerValue];
+		cell.imageView.image = [self getFoodTypeImage:number];
 	} else {
 		cell.textLabel.text = self.foodList[indexPath.row][@"name"];
+		int number = [self.foodList[indexPath.row][@"number"] integerValue];
+		cell.imageView.image = [self getFoodTypeImage:number];
 	}
 	
 
     return cell;
 }
 
+-(UIImage*) getFoodTypeImage:(int)id{
+	// Cheese, corn, loaf    , veggie,   ?
+	// 66-111,     , 162-222 , 299-489
+
+	UIImage *imageType;
+	
+	//		NSLog(@"Index: %d got : %@", indexPath.row, self.foodList[indexPath.row][@"name"]);
+	if (id >= 66 && id <= 111) {
+		imageType = [UIImage imageNamed:@"cheese-green-72"];
+	} else if (id>=162 && id<=222){
+		imageType = [UIImage imageNamed:@"loaf-green-72"];
+	} else if (id>=299 && id<=489){
+		imageType = [UIImage imageNamed:@"veggie-green-72"];
+	} else {
+		imageType = [UIImage imageNamed:@"questionmark-green-small"];
+	}
+
+	return imageType;
+}
 
 /*
 // Override to support conditional editing of the table view.
