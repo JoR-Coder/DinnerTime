@@ -34,6 +34,29 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+- (IBAction)sendEmailClicked:(id)sender {
+	if ( [MFMailComposeViewController canSendMail] ) {
+		MFMailComposeViewController *mailController = [[MFMailComposeViewController alloc] init];
+		mailController.mailComposeDelegate = self;
+		[mailController setSubject:@"Hint about an awesome app..."];
+		[mailController setMessageBody:@"Hej Älghagen :-D...\nDetta har skickats via min übersexiga app." isHTML:NO];
+		if (mailController) [self presentViewController:mailController animated:YES completion:nil];
+	}else{
+		NSLog(@"Cannot send :-(");
+	}
+	
+}
+
+#pragma mark - email
+
+-(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+	if (result == MFMailComposeResultSent) {
+		NSLog(@"Aaaaw! I sent a frikkin letter");
+	}
+	
+	[self dismissViewControllerAnimated:YES completion:nil];
+}
 
 /*
 #pragma mark - Navigation

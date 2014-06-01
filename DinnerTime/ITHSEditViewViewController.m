@@ -79,6 +79,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+// I should have a popup asking "Really delete post???".... But... äääääh! Orkaaaa!
 - (IBAction)deleteClicked:(id)sender {
 
 	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
@@ -336,7 +338,7 @@
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-	if (buttonIndex!=0) {
+	if (buttonIndex==0) {
 		[self.navigationController popViewControllerAnimated:YES];
 	}
 }

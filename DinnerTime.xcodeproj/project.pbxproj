@@ -27,6 +27,8 @@
 		8CA549A91934FC250032BACD /* ITHSEditViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA549A81934FC250032BACD /* ITHSEditViewViewController.m */; };
 		8CA549ED19354D7E0032BACD /* ITHSFavoriteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA549EC19354D7E0032BACD /* ITHSFavoriteCell.m */; };
 		8CA549F0193615410032BACD /* ITHSInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA549EF193615410032BACD /* ITHSInfoViewController.m */; };
+		8CC434B619388D1000DD33F9 /* ITHSPicturesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC434B519388D1000DD33F9 /* ITHSPicturesTableViewController.m */; };
+		8CC434B8193BB5A900DD33F9 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC434B7193BB5A900DD33F9 /* MessageUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +73,9 @@
 		8CA549EC19354D7E0032BACD /* ITHSFavoriteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITHSFavoriteCell.m; sourceTree = "<group>"; };
 		8CA549EE193615410032BACD /* ITHSInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITHSInfoViewController.h; sourceTree = "<group>"; };
 		8CA549EF193615410032BACD /* ITHSInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITHSInfoViewController.m; sourceTree = "<group>"; };
+		8CC434B419388D1000DD33F9 /* ITHSPicturesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITHSPicturesTableViewController.h; sourceTree = "<group>"; };
+		8CC434B519388D1000DD33F9 /* ITHSPicturesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITHSPicturesTableViewController.m; sourceTree = "<group>"; };
+		8CC434B7193BB5A900DD33F9 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CC434B8193BB5A900DD33F9 /* MessageUI.framework in Frameworks */,
 				8C24D461191A49850091C044 /* CoreGraphics.framework in Frameworks */,
 				8C24D463191A49850091C044 /* UIKit.framework in Frameworks */,
 				8C24D45F191A49850091C044 /* Foundation.framework in Frameworks */,
@@ -119,6 +125,7 @@
 		8C24D45D191A49850091C044 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8CC434B7193BB5A900DD33F9 /* MessageUI.framework */,
 				8C24D45E191A49850091C044 /* Foundation.framework */,
 				8C24D460191A49850091C044 /* CoreGraphics.framework */,
 				8C24D462191A49850091C044 /* UIKit.framework */,
@@ -138,6 +145,8 @@
 				8CA549EB19354D7E0032BACD /* ITHSFavoriteCell.h */,
 				8CA549EC19354D7E0032BACD /* ITHSFavoriteCell.m */,
 				8C24D465191A49850091C044 /* Supporting Files */,
+				8CC434B419388D1000DD33F9 /* ITHSPicturesTableViewController.h */,
+				8CC434B519388D1000DD33F9 /* ITHSPicturesTableViewController.m */,
 			);
 			path = DinnerTime;
 			sourceTree = "<group>";
@@ -293,6 +302,7 @@
 			files = (
 				8C24D46F191A49860091C044 /* ITHSAppDelegate.m in Sources */,
 				8C24D475191A49860091C044 /* ITHSViewController.m in Sources */,
+				8CC434B619388D1000DD33F9 /* ITHSPicturesTableViewController.m in Sources */,
 				8C24D46B191A49860091C044 /* main.m in Sources */,
 				8C09238B192950710038D7C7 /* ITHSFoodTableViewController.m in Sources */,
 				8CA549F0193615410032BACD /* ITHSInfoViewController.m in Sources */,

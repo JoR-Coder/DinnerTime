@@ -252,17 +252,17 @@
 			//search...
 			NSArray *filtered = [nutrients filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"articleNumber == %d", self.foodArticle] ];
 
-			if (filtered.count==0) {
-				// No match... Let's add this one...
-				[nutrients addObject: Favorite ];
-				[prefs setObject:nutrients forKey:@"nutrients"];
-				
-			}else {
+			if (filtered.count>0) {
+				// Found it... Bail out, bail the heck out, now now nooow.
 				[self animateSaved:@"Already in favourites"];
 				return;
+				
 			}
-			
 		}
+		
+		[nutrients addObject: Favorite ];
+		[prefs setObject:nutrients forKey:@"nutrients"];
+		
 		[prefs synchronize];
 	}
 
