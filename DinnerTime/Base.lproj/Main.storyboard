@@ -159,7 +159,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="10" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="nr:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="89n-81-TnD">
-                                            <rect key="frame" x="99" y="13" width="22" height="21"/>
+                                            <rect key="frame" x="99" y="13" width="42" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <accessibility key="accessibilityConfiguration">
                                                 <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
@@ -621,7 +621,7 @@
                                 <rect key="frame" x="20" y="65" width="280" height="311"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <mutableString key="text">Hello peeps!  This app is for those who is interrested in what food would be appropriate for those who take LCHF fanatically.  It searches the database from mat.api.se and gives you a simple view of nutrients...  And if it detects any bad nutrients it flags a little warning for you.  A simple app, but it had to be made.  If you like it... Email your friends about it.</mutableString>
+                                <string key="text">Hello peeps!  This app is for those who is interrested in what food would be appropriate for those who take LCHF fanatically.  It searches the database from mat.api.se and gives you a simple view of nutrients...  And if it detects any bad nutrients it flags a little warning for you.  A simple app, but it had to be made.  If you like it... Email your friends about it.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>

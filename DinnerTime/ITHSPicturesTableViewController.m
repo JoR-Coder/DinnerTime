@@ -190,7 +190,8 @@
 		
 		
 		ITHSEditViewViewController *editView = [segue destinationViewController];
-		editView.articleNr = index.row;
+		editView.articleNr = [[self.favoriteList[index.row] objectForKey:@"articleNumber"] integerValue];
+		NSLog(@"Vilket artikelnr blev det nurå?%@", self.favoriteList[index.row]);
 	}
 }
  
