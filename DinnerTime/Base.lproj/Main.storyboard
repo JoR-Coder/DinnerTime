@@ -13,7 +13,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="173" id="Sar-4n-IJ1">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="imageCell" rowHeight="173" id="Sar-4n-IJ1">
                                 <rect key="frame" x="0.0" y="86" width="320" height="173"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Sar-4n-IJ1" id="ew7-fG-esI">
@@ -31,10 +31,13 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Images" id="Z1Y-8L-kus"/>
+                    <connections>
+                        <outlet property="imagesTableView" destination="Kxz-9z-kt0" id="Ee7-rX-tiI"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n0r-8e-UYd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="434" y="-369"/>
+            <point key="canvasLocation" x="430" y="-391"/>
         </scene>
         <!--View Controller - DinnerTime-->
         <scene sceneID="ufC-wZ-h7g">
@@ -209,7 +212,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1332" y="225"/>
+            <point key="canvasLocation" x="1342" y="225"/>
         </scene>
         <!--Edit View View Controller - Edit favorite-->
         <scene sceneID="5Ps-ZN-arW">
@@ -342,7 +345,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1731" y="300"/>
+            <point key="canvasLocation" x="1773" y="225"/>
         </scene>
         <!--Browse-->
         <scene sceneID="VQg-NB-ycI">
@@ -402,7 +405,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1332" y="-422"/>
+            <point key="canvasLocation" x="1342" y="-391"/>
         </scene>
         <!--Nutrients-->
         <scene sceneID="GYS-Hv-6LS">
@@ -590,7 +593,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1731" y="-350"/>
+            <point key="canvasLocation" x="1773" y="-391"/>
         </scene>
         <!--Info View Controller - Info-->
         <scene sceneID="zeK-ha-5h5">
@@ -604,28 +607,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="This be info about app'n'author" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y2y-8b-okB">
-                                <rect key="frame" x="48" y="225" width="224" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XdJ-g7-jeq">
+                                <rect key="frame" x="122" y="384" width="76" height="76"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Plain" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BcY-4J-NwU">
-                                <rect key="frame" x="112" y="323" width="97" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XdJ-g7-jeq">
-                                <rect key="frame" x="137" y="382" width="48" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Eposta">
+                                <state key="normal" image="email-green-72">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="sendEmailClicked:" destination="B0D-tG-DG6" eventType="touchUpInside" id="gpa-DN-YMX"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AAf-SD-05m">
+                                <rect key="frame" x="20" y="65" width="280" height="311"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <mutableString key="text">Hello peeps!  This app is for those who is interrested in what food would be appropriate for those who take LCHF fanatically.  It searches the database from mat.api.se and gives you a simple view of nutrients...  And if it detects any bad nutrients it flags a little warning for you.  A simple app, but it had to be made.  If you like it... Email your friends about it.</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -667,6 +666,7 @@
         <image name="DinnerTime Logo" width="955" height="489"/>
         <image name="Icon-120" width="120" height="120"/>
         <image name="Icon-120-red" width="120" height="120"/>
+        <image name="email-green-72" width="76" height="76"/>
         <image name="heart_green" width="64" height="64"/>
         <image name="photo-green-120" width="120" height="120"/>
     </resources>
@@ -676,6 +676,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="cXi-Hj-lZ4"/>
+        <segue reference="9EW-Qg-bBK"/>
     </inferredMetricsTieBreakers>
 </document>

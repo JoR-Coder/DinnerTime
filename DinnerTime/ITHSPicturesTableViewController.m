@@ -7,9 +7,12 @@
 //
 
 #import "ITHSPicturesTableViewController.h"
+#import "ITHSEditViewViewController.h"
+
 
 @interface ITHSPicturesTableViewController ()
-
+@property (strong, nonatomic) IBOutlet UITableView *imagesTableView;
+@property (nonatomic) NSArray *favoriteList;
 @end
 
 @implementation ITHSPicturesTableViewController
@@ -34,6 +37,23 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+-(void)viewDidAppear:(BOOL)animated{
+	dispatch_async(dispatch_get_main_queue(), ^{
+		
+		NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+		self.favoriteList = [ NSMutableArray arrayWithArray:[prefs objectForKey:@"nutrients"] ];
+		
+		if ( self.favoriteList == nil) {
+			self.favoriteList = [[NSMutableArray alloc] init];
+			
+			[prefs setObject:self.favoriteList forKey:@"nutrients"];
+			[prefs synchronize];
+		}
+		
+		[self.imagesTableView reloadData];
+	});
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -51,19 +71,71 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 1;
+    return self.favoriteList.count;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"imageCell" forIndexPath:indexPath];
     
-    // Configure the cell...
-    
+	int articleNr = [[self.favoriteList[indexPath.row] objectForKey:@"articleNumber"] integerValue];
+
+	
+	//[NSString stringWithFormat:@"%d", articleNr];
+	
+	NSString *filename = [NSString stringWithFormat:@"%d-foodFavSnapshot", articleNr ];
+	UIImage *image = [ UIImage imageWithContentsOfFile:[self imagePath:filename] ];
+	
+	if (image) {
+		CGSize scaleSize = CGSizeMake(287.0, 172.0);
+		UIGraphicsBeginImageContextWithOptions(scaleSize, NO, 0.0);
+		[image drawInRect:CGRectMake(0, 0, scaleSize.width, scaleSize.height)];
+		UIImage *resizedImage = UIGraphicsGetImageFromCurrentImageContext();
+		[cell.imageView setImage:resizedImage];
+		
+	} else {
+		[cell.imageView setImage: [self getFoodTypeImage:articleNr] ];
+	}
+	
     return cell;
 }
-*/
+
+
+
+-(UIImage*) getFoodTypeImage:(int)id{
+	// Cheese, corn, loaf    , veggie,   ?
+	// 66-111,     , 162-222 , 299-489
+	
+	UIImage *imageType;
+	
+	//		NSLog(@"Index: %d got : %@", indexPath.row, self.foodList[indexPath.row][@"name"]);
+	if (id >= 66 && id <= 111) {
+		NSLog(@"Cheeses");
+		imageType = [UIImage imageNamed:@"cheese-green-72"];
+	} else if (id>=162 && id<=222){
+		imageType = [UIImage imageNamed:@"loaf-green-72"];
+	} else if (id>=299 && id<=489){
+		imageType = [UIImage imageNamed:@"veggie-green-72"];
+	} else {
+		imageType = [UIImage imageNamed:@"questionmark-green"];
+	}
+	
+	return imageType;
+}
+
+-(NSString *) imagePath:(NSString *)name{
+	NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES );
+	
+	NSString *documentsDirectory = path[0];
+	
+	NSString *imageName = [NSString stringWithFormat:@"%@.png", name ];
+	NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:imageName ];
+	
+	return imagePath;
+}
+
+
 
 /*
 // Override to support conditional editing of the table view.
@@ -112,10 +184,13 @@
 	// Pass the selected object to the new view controller.
  
 	if( [segue.identifier isEqualToString:@"editView"] ){
-		//ITHSFavoriteCell *cell= sender;
+		UITableViewCell *cell= sender;
  
-		//ITHSEditViewViewController *editView = [segue destinationViewController];
-		//editView.articleNr = [cell.articleNumberLabel.text integerValue];
+		NSIndexPath *index = [self.imagesTableView indexPathForCell:cell];
+		
+		
+		ITHSEditViewViewController *editView = [segue destinationViewController];
+		editView.articleNr = index.row;
 	}
 }
  

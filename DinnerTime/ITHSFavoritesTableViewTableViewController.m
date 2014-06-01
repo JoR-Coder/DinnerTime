@@ -103,9 +103,6 @@
 		UIImage *resizedImage = UIGraphicsGetImageFromCurrentImageContext();
 		[cell.snapshotImageView setImage:resizedImage];
 		
-		// cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
-		// cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
-		// cell.imageView.contentMode = UIViewContentModeScaleToFill;
 	} else {
 		[cell.snapshotImageView setImage: [self getFoodTypeImage:articleNr] ];
 	}

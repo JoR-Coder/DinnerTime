@@ -35,12 +35,16 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)sendEmailClicked:(id)sender {
+
 	if ( [MFMailComposeViewController canSendMail] ) {
+
 		MFMailComposeViewController *mailController = [[MFMailComposeViewController alloc] init];
-		mailController.mailComposeDelegate = self;
+		[mailController setMailComposeDelegate:self];
 		[mailController setSubject:@"Hint about an awesome app..."];
+		
 		[mailController setMessageBody:@"Hej Älghagen :-D...\nDetta har skickats via min übersexiga app." isHTML:NO];
-		if (mailController) [self presentViewController:mailController animated:YES completion:nil];
+
+		[self presentViewController:mailController animated:YES completion:nil];
 	}else{
 		NSLog(@"Cannot send :-(");
 	}
