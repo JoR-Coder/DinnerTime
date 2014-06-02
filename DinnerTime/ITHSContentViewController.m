@@ -58,43 +58,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-/*	KursInfo...
-
-	Upphämtnings-tid :-)
-	Imorgon... Har jag klarat av allt behövs inte närvaro på eftermiddan.
-	Sönda deadline.
-	Extrauppgiften måste göras :-(
-	Skall kunna strömposta någon med en färdig-ifylld sak.
-	 Endast mottagaren skall ifyllas.
- 
-	Jag gör väl även extrauppgiften.
-	 minst fem ikoner som visar vad för typ av matvara det handlar om.
- 
-	
-	Del tre av kursen nästa vecka...
-	Eget projekt.
-	 Något som skall ta en månads tid...
-	 Planera milstolpar o jox
-	 1. Sinus-app
-	 2. RemoteFiles-app (backend hemma hos mig, python/php/laravel???)
-	 3. ?
- 
- github.com/trending?l=objective-c
- 
- Gå in i roten till ditt projekt, se till att den är stängd i XCode5
- 
- pod init
- <redigera din PodFile>
- pod install
- starta genom att använda sig av nya ?.xcworkspace
- 
- Klart :)
- 
- utvecklings@iths.se
- IThs2012
- 
- 
- */
 
 - (IBAction)goBack:(id)sender {
 	[self.navigationController popViewControllerAnimated:YES];
