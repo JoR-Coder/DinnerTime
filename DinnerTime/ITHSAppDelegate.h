@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MatAPI.h"
 
 @interface ITHSAppDelegate : UIResponder <UIApplicationDelegate>
 

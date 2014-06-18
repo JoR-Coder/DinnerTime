@@ -22,6 +22,8 @@
 		8C24D480191A49860091C044 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C24D462191A49850091C044 /* UIKit.framework */; };
 		8C24D488191A49860091C044 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8C24D486191A49860091C044 /* InfoPlist.strings */; };
 		8C24D48A191A49860091C044 /* DinnerTimeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C24D489191A49860091C044 /* DinnerTimeTests.m */; };
+		8C6DE797193F555800B5C298 /* ITHSDiagramViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6DE796193F555800B5C298 /* ITHSDiagramViewController.m */; };
+		8C6DE79A19400F0B00B5C298 /* ITHSSecondDiagramView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6DE79919400F0B00B5C298 /* ITHSSecondDiagramView.m */; };
 		8CA549181931FE350032BACD /* ITHSContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA549171931FE350032BACD /* ITHSContentViewController.m */; };
 		8CA549A01934A5940032BACD /* ITHSFavoritesTableViewTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA5499F1934A5940032BACD /* ITHSFavoritesTableViewTableViewController.m */; };
 		8CA549A91934FC250032BACD /* ITHSEditViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA549A81934FC250032BACD /* ITHSEditViewViewController.m */; };
@@ -29,6 +31,8 @@
 		8CA549F0193615410032BACD /* ITHSInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA549EF193615410032BACD /* ITHSInfoViewController.m */; };
 		8CC434B619388D1000DD33F9 /* ITHSPicturesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC434B519388D1000DD33F9 /* ITHSPicturesTableViewController.m */; };
 		8CC434B8193BB5A900DD33F9 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC434B7193BB5A900DD33F9 /* MessageUI.framework */; };
+		8CCC73571951F00D00E37763 /* MatAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CCC73561951F00D00E37763 /* MatAPI.m */; };
+		B0F16D3C1E9C4E3482E17EC2 /* libPods-DinnerTime.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F1455BE2A2F4E3495EEA573 /* libPods-DinnerTime.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5F1455BE2A2F4E3495EEA573 /* libPods-DinnerTime.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DinnerTime.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C092389192950710038D7C7 /* ITHSFoodTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITHSFoodTableViewController.h; sourceTree = "<group>"; };
 		8C09238A192950710038D7C7 /* ITHSFoodTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITHSFoodTableViewController.m; sourceTree = "<group>"; };
 		8C24D45B191A49850091C044 /* DinnerTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DinnerTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -63,6 +68,10 @@
 		8C24D485191A49860091C044 /* DinnerTimeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DinnerTimeTests-Info.plist"; sourceTree = "<group>"; };
 		8C24D487191A49860091C044 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8C24D489191A49860091C044 /* DinnerTimeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DinnerTimeTests.m; sourceTree = "<group>"; };
+		8C6DE795193F555800B5C298 /* ITHSDiagramViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITHSDiagramViewController.h; sourceTree = "<group>"; };
+		8C6DE796193F555800B5C298 /* ITHSDiagramViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITHSDiagramViewController.m; sourceTree = "<group>"; };
+		8C6DE79819400F0B00B5C298 /* ITHSSecondDiagramView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITHSSecondDiagramView.h; sourceTree = "<group>"; };
+		8C6DE79919400F0B00B5C298 /* ITHSSecondDiagramView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITHSSecondDiagramView.m; sourceTree = "<group>"; };
 		8CA549161931FE350032BACD /* ITHSContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITHSContentViewController.h; sourceTree = "<group>"; };
 		8CA549171931FE350032BACD /* ITHSContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITHSContentViewController.m; sourceTree = "<group>"; };
 		8CA5499E1934A5940032BACD /* ITHSFavoritesTableViewTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITHSFavoritesTableViewTableViewController.h; sourceTree = "<group>"; };
@@ -76,6 +85,9 @@
 		8CC434B419388D1000DD33F9 /* ITHSPicturesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITHSPicturesTableViewController.h; sourceTree = "<group>"; };
 		8CC434B519388D1000DD33F9 /* ITHSPicturesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITHSPicturesTableViewController.m; sourceTree = "<group>"; };
 		8CC434B7193BB5A900DD33F9 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		8CCC73551951F00D00E37763 /* MatAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatAPI.h; sourceTree = "<group>"; };
+		8CCC73561951F00D00E37763 /* MatAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatAPI.m; sourceTree = "<group>"; };
+		DBB9F9C274124F6E8B3FF122 /* Pods-DinnerTime.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DinnerTime.xcconfig"; path = "Pods/Pods-DinnerTime.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +99,7 @@
 				8C24D461191A49850091C044 /* CoreGraphics.framework in Frameworks */,
 				8C24D463191A49850091C044 /* UIKit.framework in Frameworks */,
 				8C24D45F191A49850091C044 /* Foundation.framework in Frameworks */,
+				B0F16D3C1E9C4E3482E17EC2 /* libPods-DinnerTime.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,6 +123,7 @@
 				8C24D483191A49860091C044 /* DinnerTimeTests */,
 				8C24D45D191A49850091C044 /* Frameworks */,
 				8C24D45C191A49850091C044 /* Products */,
+				DBB9F9C274124F6E8B3FF122 /* Pods-DinnerTime.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -130,6 +144,7 @@
 				8C24D460191A49850091C044 /* CoreGraphics.framework */,
 				8C24D462191A49850091C044 /* UIKit.framework */,
 				8C24D47D191A49860091C044 /* XCTest.framework */,
+				5F1455BE2A2F4E3495EEA573 /* libPods-DinnerTime.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -137,16 +152,14 @@
 		8C24D464191A49850091C044 /* DinnerTime */ = {
 			isa = PBXGroup;
 			children = (
+				8C24D473191A49860091C044 /* ITHSViewController.h */,
+				8C24D474191A49860091C044 /* ITHSViewController.m */,
 				8CA549A11934A5A40032BACD /* Views */,
 				8C24D46D191A49860091C044 /* ITHSAppDelegate.h */,
 				8C24D46E191A49860091C044 /* ITHSAppDelegate.m */,
 				8C24D470191A49860091C044 /* Main.storyboard */,
 				8C24D476191A49860091C044 /* Images.xcassets */,
-				8CA549EB19354D7E0032BACD /* ITHSFavoriteCell.h */,
-				8CA549EC19354D7E0032BACD /* ITHSFavoriteCell.m */,
 				8C24D465191A49850091C044 /* Supporting Files */,
-				8CC434B419388D1000DD33F9 /* ITHSPicturesTableViewController.h */,
-				8CC434B519388D1000DD33F9 /* ITHSPicturesTableViewController.m */,
 			);
 			path = DinnerTime;
 			sourceTree = "<group>";
@@ -154,6 +167,10 @@
 		8C24D465191A49850091C044 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8CA549EC19354D7E0032BACD /* ITHSFavoriteCell.m */,
+				8CA549EB19354D7E0032BACD /* ITHSFavoriteCell.h */,
+				8CCC73551951F00D00E37763 /* MatAPI.h */,
+				8CCC73561951F00D00E37763 /* MatAPI.m */,
 				8C24D466191A49860091C044 /* DinnerTime-Info.plist */,
 				8C24D467191A49860091C044 /* InfoPlist.strings */,
 				8C24D46A191A49860091C044 /* main.m */,
@@ -183,10 +200,14 @@
 		8CA549A11934A5A40032BACD /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8CC434B419388D1000DD33F9 /* ITHSPicturesTableViewController.h */,
+				8CC434B519388D1000DD33F9 /* ITHSPicturesTableViewController.m */,
+				8C6DE795193F555800B5C298 /* ITHSDiagramViewController.h */,
+				8C6DE796193F555800B5C298 /* ITHSDiagramViewController.m */,
+				8C6DE79819400F0B00B5C298 /* ITHSSecondDiagramView.h */,
+				8C6DE79919400F0B00B5C298 /* ITHSSecondDiagramView.m */,
 				8CA549EE193615410032BACD /* ITHSInfoViewController.h */,
 				8CA549EF193615410032BACD /* ITHSInfoViewController.m */,
-				8C24D473191A49860091C044 /* ITHSViewController.h */,
-				8C24D474191A49860091C044 /* ITHSViewController.m */,
 				8C092389192950710038D7C7 /* ITHSFoodTableViewController.h */,
 				8C09238A192950710038D7C7 /* ITHSFoodTableViewController.m */,
 				8CA549161931FE350032BACD /* ITHSContentViewController.h */,
@@ -206,9 +227,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8C24D48D191A49860091C044 /* Build configuration list for PBXNativeTarget "DinnerTime" */;
 			buildPhases = (
+				120C72B03CE24EB59DAAF362 /* Check Pods Manifest.lock */,
 				8C24D457191A49850091C044 /* Sources */,
 				8C24D458191A49850091C044 /* Frameworks */,
 				8C24D459191A49850091C044 /* Resources */,
+				CB6A772979954B31A0D424C5 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -295,6 +318,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		120C72B03CE24EB59DAAF362 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		CB6A772979954B31A0D424C5 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-DinnerTime-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8C24D457191A49850091C044 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -302,6 +358,8 @@
 			files = (
 				8C24D46F191A49860091C044 /* ITHSAppDelegate.m in Sources */,
 				8C24D475191A49860091C044 /* ITHSViewController.m in Sources */,
+				8CCC73571951F00D00E37763 /* MatAPI.m in Sources */,
+				8C6DE79A19400F0B00B5C298 /* ITHSSecondDiagramView.m in Sources */,
 				8CC434B619388D1000DD33F9 /* ITHSPicturesTableViewController.m in Sources */,
 				8C24D46B191A49860091C044 /* main.m in Sources */,
 				8C09238B192950710038D7C7 /* ITHSFoodTableViewController.m in Sources */,
@@ -309,6 +367,7 @@
 				8CA549181931FE350032BACD /* ITHSContentViewController.m in Sources */,
 				8CA549ED19354D7E0032BACD /* ITHSFavoriteCell.m in Sources */,
 				8CA549A01934A5940032BACD /* ITHSFavoritesTableViewTableViewController.m in Sources */,
+				8C6DE797193F555800B5C298 /* ITHSDiagramViewController.m in Sources */,
 				8CA549A91934FC250032BACD /* ITHSEditViewViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -375,7 +434,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Marcus Andersson (FXVH6FZ8P8)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Marcus Andersson (FXVH6FZ8P8)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -413,7 +473,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Marcus Andersson (FXVH6FZ8P8)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Marcus Andersson (FXVH6FZ8P8)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -431,6 +492,7 @@
 		};
 		8C24D48E191A49860091C044 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DBB9F9C274124F6E8B3FF122 /* Pods-DinnerTime.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -447,6 +509,7 @@
 		};
 		8C24D48F191A49860091C044 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DBB9F9C274124F6E8B3FF122 /* Pods-DinnerTime.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

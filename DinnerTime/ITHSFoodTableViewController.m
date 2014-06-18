@@ -8,6 +8,7 @@
 
 #import "ITHSFoodTableViewController.h"
 #import "ITHSContentViewController.h"
+#import "MatAPI.h"
 
 @interface ITHSFoodTableViewController ()
 
@@ -37,7 +38,7 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-		[self loadData];
+	[self loadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,24 +48,21 @@
 }
 
 
-// TODO: Errorcheck... No good idea to have foodList nil.
 -(void) loadData{
-	NSString *urlStr = @"http://matapi.se/foodstuff";
-	NSURL *URL = [NSURL URLWithString:urlStr];
-	NSURLRequest *request = [NSURLRequest requestWithURL:URL];
-	NSURLSession *session = [NSURLSession sharedSession];
 	
-	NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:
-								  ^(NSData *data, NSURLResponse *response, NSError *err){
-									  NSError *parseError;
-									  self.foodList = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&parseError];
-									  // NSLog(@"%@",self.foodList);
-									  dispatch_async(dispatch_get_main_queue(), ^{
-										  [self.foodTableView reloadData];
-									  });
-
-								  }];
-	[task resume];
+	dispatch_async(dispatch_get_main_queue(), ^{
+		int count=0;
+		while ( ![[MatAPI sharedInstance] dataLoaded] ) {
+			[NSThread sleepForTimeInterval:0.5];
+			if (++count>8) {
+				NSLog(@"I didn't want to wait anymore :/");
+				break;
+			}
+		}
+		self.foodList = [[MatAPI sharedInstance] foodList];
+		[self.foodTableView reloadData];
+	});
+									  
 }
 
 

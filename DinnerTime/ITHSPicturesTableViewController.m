@@ -8,6 +8,7 @@
 
 #import "ITHSPicturesTableViewController.h"
 #import "ITHSEditViewViewController.h"
+#import "MatAPI.h"
 
 
 @interface ITHSPicturesTableViewController ()
@@ -36,6 +37,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
+
 
 -(void)viewDidAppear:(BOOL)animated{
 	dispatch_async(dispatch_get_main_queue(), ^{

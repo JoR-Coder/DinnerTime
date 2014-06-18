@@ -7,6 +7,8 @@
 //
 
 #import "ITHSContentViewController.h"
+#import "ITHSDiagramViewController.h"
+#import "MatAPI.h"
 
 @interface ITHSContentViewController ()
 
@@ -66,38 +68,22 @@
 
 -(void) loadData:(int)articleNumber{
 	
-	NSString *urlStr = [NSString stringWithFormat:@"http://matapi.se/foodstuff/%d", articleNumber];
+	dispatch_async(dispatch_get_main_queue(), ^{
 
-	NSURL *URL = [NSURL URLWithString:urlStr];
-	NSURLRequest *request = [NSURLRequest requestWithURL:URL];
-	NSURLSession *session = [NSURLSession sharedSession];
-	
-	
-	NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:
-								  ^(NSData *data, NSURLResponse *response, NSError *err){
-									  NSError *parseError;
-									  self.nutritionsList = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&parseError];
-									  // NSLog(@"-- %@", self.nutritionsList );
-									  if ([self.nutritionsList objectForKey:@"name"]) {
-										  dispatch_async(dispatch_get_main_queue(), ^{
-											  self.foodArticleView.text = self.nutritionsList[@"name"];
-											  self.navigationItem.title = [NSString stringWithFormat:@"Artikle nr:%i",articleNumber];
-											  NSDictionary *nutrients = self.nutritionsList[@"nutrientValues"];
+		self.nutritionsList = [[MatAPI sharedInstance] getNutritions:articleNumber];
 
-											  [self isItLSHFApproved:@"fat" amount:[nutrients[@"fat"] floatValue]];
-											  [self isItLSHFApproved:@"magnesium" amount:[nutrients[@"magnesium"] floatValue]];
-											  [self isItLSHFApproved:@"protein" amount:[nutrients[@"protein"] floatValue]];
-											  [self isItLSHFApproved:@"saturatedFattyAcids" amount:[nutrients[@"saturatedFattyAcids"] floatValue]];
-											  
-										  });
-									  }else if ([self.nutritionsList objectForKey:@"message"]){
-										  self.foodArticleView.text = self.nutritionsList[@"message"];
-									  }else{
-										  self.foodArticleView.text = @"Unknown error!";
-									  }
-									  
-								  }];
-	[task resume];
+		self.foodArticleView.text = self.nutritionsList[@"name"];
+		self.navigationItem.title = [NSString stringWithFormat:@"Artikle nr:%i",articleNumber];
+		NSDictionary *nutrients = self.nutritionsList[@"nutrientValues"];
+		
+		[self isItLSHFApproved:@"fat" amount:[nutrients[@"fat"] floatValue]];
+		[self isItLSHFApproved:@"magnesium" amount:[nutrients[@"magnesium"] floatValue]];
+		[self isItLSHFApproved:@"protein" amount:[nutrients[@"protein"] floatValue]];
+		[self isItLSHFApproved:@"saturatedFattyAcids" amount:[nutrients[@"saturatedFattyAcids"] floatValue]];
+		
+	});
+
+
 	
 	// Based on 2000 Calorie intake, for adults and children four or more years...
 	NSMutableDictionary *rdi = [[NSMutableDictionary alloc] init];
@@ -330,15 +316,17 @@
 }
 
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+	if( [segue.identifier isEqualToString:@"DiagramSegue"] ){
+				
+		ITHSContentViewController *diagramView = [segue destinationViewController];
+		
+		diagramView.foodArticle = self.foodArticle;
+	}
 }
-*/
 
 @end
