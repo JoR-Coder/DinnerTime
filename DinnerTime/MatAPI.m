@@ -15,6 +15,9 @@
 @property (nonatomic) BOOL errorDetected;
 @property (nonatomic) NSString *ErrorMessage;
 
+@property (nonatomic) NSArray *CachedFoodList;
+@property (nonatomic) NSMutableArray *CachedfoodItems;
+
 @end
 
 
@@ -38,6 +41,7 @@
 	
 	if (self) {
 		// Init stuff here...
+		self.CachedfoodItems = [[NSMutableArray alloc] init];
 		self.dataLoaded = NO;
 		self.errorDetected = NO;
 		[self loadData];
@@ -52,39 +56,58 @@
 // If timestamp is different, load list from matapi.se, else
 //  use the saved version :-D
 
-// TODO: I need more errorcheck here... What if returned data actually is a errMessage.
+//  (Nope, no timestamps)
+// TODO: Have only one method to fetch data from matapi.se :-/
 -(void) loadData{
-	NSString *urlStr = @"http://matapi.se/foodstuff";
-	NSURL *URL = [NSURL URLWithString:urlStr];
-	NSURLRequest *request = [NSURLRequest requestWithURL:URL];
-	NSURLSession *session = [NSURLSession sharedSession];
-	
-	NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:
-		^(NSData *data, NSURLResponse *response, NSError *err){
-			if (err==nil) {
-				if( [(NSHTTPURLResponse*)response statusCode] == 200) {
-					NSError *parseError;
-					self.foodList = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&parseError];
-					if (parseError == nil ) {
 
-						//dispatch_async(dispatch_get_main_queue(), ^{
-						
-						self.dataLoaded = YES;
+	dispatch_async(dispatch_get_main_queue(), ^{
+		
+		NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+		self.foodList = [ NSArray arrayWithArray:[prefs objectForKey:@"foodList"] ];
 
-						//});
+		if ( self.foodList == nil) {
 
-					} else {
-						[self setError:[NSString stringWithFormat:@"Error parsing JSON data : %@", parseError.localizedDescription] ];
+			NSString *urlStr = @"http://matapi.se/foodstuff";
+			NSURL *URL = [NSURL URLWithString:urlStr];
+			NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+			NSURLSession *session = [NSURLSession sharedSession];
+			
+			NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler: ^(NSData *data, NSURLResponse *response, NSError *err){
+
+				if (err==nil) {
+					if( [(NSHTTPURLResponse*)response statusCode] == 200) {
+
+						NSError *parseError;
+						self.foodList = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&parseError];
+
+						if (parseError == nil ) {
+
+							self.dataLoaded = YES;
+							[prefs setObject:self.foodList forKey:@"foodList"];
+							[prefs synchronize];
+
+						} else {
+							[self setError:[NSString stringWithFormat:@"Error parsing JSON data : %@", parseError.localizedDescription] ];
+						}
+					}else{
+						[self setError:[NSString stringWithFormat:@"HTTP response error : %@", response.description] ];
 					}
 				}else{
-					[self setError:[NSString stringWithFormat:@"HTTP response error : %@", response.description] ];
+					[self setError:[NSString stringWithFormat:@"Error retrieving data: %@", err.localizedDescription] ];
 				}
-			}else{
-				[self setError:[NSString stringWithFormat:@"Error retrieving data: %@", err.localizedDescription] ];
-			}
-	}];
+			}];
+			
+			[task resume];
 
-	[task resume];
+		} else {
+			// List already cached...
+			self.dataLoaded = YES;
+		}
+
+		// Let's try to remember where we were the last time :-)
+		self.tmpData = [[NSDictionary alloc] initWithDictionary:[prefs objectForKey:@"lastCheckedItem"]];
+
+	});
 }
 
 
@@ -93,17 +116,35 @@
 }
 
 
+-(NSString *)getItemName:(int)forItem{
+	
+	if (self.dataLoaded) {
+		// Let's see if we can find the item...
+		NSPredicate *cached = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"number = %d", forItem] ];
+		NSArray *filteredCached = [self.foodList filteredArrayUsingPredicate:cached];
+		
+		if (filteredCached.count>0) {
+			// Found it. We'll assume only one hit.
+			return [filteredCached[0] objectForKey:@"name"];
+		}
+	}
+
+	return nil;
+}
 
 // TODO: I want to have another list... This list should contain already obtained
 //  nutritionsdata. So...
-// First check if forItem already is i list, return THAT, else load from matapi.se
+// First check if forItem already is in list, return THAT, else load from matapi.se
 //  and store it in the list :-D
 -(NSDictionary *)getNutritions:(int)forItem{
 	
 	// Here I want code to check if item already is loaded.
-	//
-	//
+	NSPredicate *cached = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"number = %d", forItem] ];
+	NSArray *filteredCached = [self.CachedfoodItems filteredArrayUsingPredicate:cached];
+	
+	if (filteredCached.count>0) { return filteredCached[0]; }
 
+	// Nope, not in list, let's fetch it from matapi.se
 	dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
 	
 	NSString *urlStr = [NSString stringWithFormat:@"http://matapi.se/foodstuff/%d", forItem];
@@ -119,9 +160,11 @@
 
 					NSError *parseError;
 					NSDictionary *recievedData = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&parseError];
+
 					if (parseError == nil ) {
 						if ([recievedData objectForKey:@"name"]) {
 
+							[self.CachedfoodItems addObject:recievedData];
 							self.tmpData = recievedData;
 
 						} else if ([recievedData objectForKey:@"message"]){
@@ -142,10 +185,17 @@
 		}];
 		
 	[task resume];
+	
 	dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
 
 	return self.tmpData;
 }
+
+
+-(NSDictionary *)getLastItem{
+	return self.tmpData;
+}
+
 
 // ErrorHandling is important. This is my petty solution.
 -(void)setError:(NSString*)msg{

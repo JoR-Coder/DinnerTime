@@ -11,11 +11,11 @@
 #import "MatAPI.h"
 
 @interface ITHSDiagramViewController ()
-@property (weak, nonatomic) IBOutlet GKBarGraph *diagramView;
-@property (weak, nonatomic) IBOutlet GKBarGraph *diagramViewBack;
-@property (weak, nonatomic) IBOutlet UITableView *ArticlesToCompareTableView;
 
-@property (nonatomic) ITHSSecondDiagramView *backBarView;
+@property (retain, nonatomic) IBOutlet GKBarGraph *diagramView;
+@property (retain, nonatomic) IBOutlet ITHSSecondDiagramView *diagramViewBack;
+@property (weak, nonatomic) IBOutlet UITableView *ArticlesToCompareTableView;
+@property (weak, nonatomic) IBOutlet UILabel *articleNameLabel;
 
 @property (nonatomic) NSDictionary *nutritionA;
 
@@ -42,21 +42,27 @@
 
 - (void)viewDidLoad
 {
+
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 	
-	// self.Values = @[ @10, @20, @30];
+	// Awh! For the love of every bug there is :-(
+	//  Why is GKBarGraph drawing outside it's own view :-(
+	CGRect frame = self.diagramView.frame;
 	
-	
-	CGRect frame = CGRectMake(0, 0, 258, 190);
-	 self.backBarView = [[ITHSSecondDiagramView alloc] initWithFrame:frame];
-	[self.diagramViewBack addSubview:self.backBarView];
-	[self.backBarView draw];
-	
+	frame.size.width = 270;
+	frame.size.height = 124;
+
+	self.diagramViewBack.frame = frame;
+	self.diagramViewBack.dataSource = self.diagramViewBack;
+	[self.diagramViewBack draw];
+
+	self.diagramView.frame = frame;
 	self.diagramView.dataSource = self;
 	[self loadDataForDiagramFront:self.foodArticle];
+
 	[self loadData];
 }
+
 
 -(void) loadData{
 	
@@ -75,16 +81,19 @@
 	
 }
 
+
 -(void) loadDataForDiagramFront:(int)articleNumber{
 	
 
 	dispatch_async(dispatch_get_main_queue(), ^{
 		
+		self.articleNameLabel.text = [[MatAPI sharedInstance] getItemName:articleNumber];
+		
 		NSDictionary *recievedData = [[MatAPI sharedInstance] getNutritions:articleNumber];
 		
 		self.nutritionA = recievedData[@"nutrientValues"];
+
 		[self.diagramView draw];
-		
 	});
 
 }
@@ -96,26 +105,15 @@
 		
 		NSDictionary *recievedData = [[MatAPI sharedInstance] getNutritions:articleNumber];
 		
-		self.backBarView.nutritionB = recievedData[@"nutrientValues"];
+		self.diagramViewBack.nutritionB = recievedData[@"nutrientValues"];
 		
-		//[self.diagramViewBack.subviews[0] draw];
-		[self.backBarView draw];
+		[self.diagramViewBack draw];
 		
 	});
 
 	
 }
 
-
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
-#pragma mark Diagram protocol
 
 #pragma mark - GKBarGraphDataSource
 
@@ -153,20 +151,24 @@
 }
 
 -(NSString *)titleForBarAtIndex:(NSInteger)index{
-	return @[ @"A",@"B",@"C",@"D",@"E" ][index];
+	return @[ @"A",@"B",@"C",@"D" ][index];
 }
 
 
-
+#pragma mark - UITableViewData & Delegations...
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
 	return 1;
 }
+
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
 	return self.foodList.count;
 }
 
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+
 	UITableViewCell *cell = [self.ArticlesToCompareTableView dequeueReusableCellWithIdentifier:@"articleCell"];
 	
 	cell.textLabel.text = self.foodList[indexPath.row][@"name"];
@@ -176,24 +178,17 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+
 	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
 	
-	// Update backDiagram...
 	[self loadDataForDiagramBack:cell.tag];
 }
 
 
-/*
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 - (IBAction)goBack:(id)sender {
+
 	[self.navigationController popViewControllerAnimated:YES];
 }
 

@@ -26,14 +26,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+
+// TODO: Add "proper" erorcheck and more information about errors (if they'd appear).
 - (IBAction)sendEmailClicked:(id)sender {
 
 	if ( [MFMailComposeViewController canSendMail] ) {
@@ -45,13 +41,13 @@
 		[mailController setMessageBody:@"Hej Älghagen :-D...\nDetta har skickats via min übersexiga app." isHTML:NO];
 
 		[self presentViewController:mailController animated:YES completion:nil];
+
 	}else{
 		NSLog(@"Cannot send :-(");
 	}
 	
 }
 
-#pragma mark - email
 
 -(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
 {
@@ -62,16 +58,7 @@
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 - (IBAction)goBack:(id)sender {
 	[self.navigationController popViewControllerAnimated:YES];
 }

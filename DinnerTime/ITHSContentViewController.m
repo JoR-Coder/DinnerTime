@@ -70,7 +70,7 @@
 	
 	dispatch_async(dispatch_get_main_queue(), ^{
 
-		self.nutritionsList = [[MatAPI sharedInstance] getNutritions:articleNumber];
+		self.nutritionsList = [[MatAPI sharedInstance] getNutritions:self.foodArticle];
 
 		self.foodArticleView.text = self.nutritionsList[@"name"];
 		self.navigationItem.title = [NSString stringWithFormat:@"Artikle nr:%i",articleNumber];
@@ -238,8 +238,8 @@
 	
 	NSDictionary *dropMessageGeometries = [self getGeometries:dropMessage];
 
-	CGPoint upperRight = [dropMessageGeometries[@"upperRight"] CGPointValue];
-	CGPoint lowerRight = [dropMessageGeometries[@"lowerRight"] CGPointValue];
+	CGPoint upperRight = [dropMessageGeometries[@"upperLeft"] CGPointValue];
+	CGPoint lowerRight = [dropMessageGeometries[@"lowerLeft"] CGPointValue];
 
 	lowerRight.y = lowerRight.y/2;
 	[dropMessage setCenter:upperRight];
@@ -321,9 +321,9 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-	if( [segue.identifier isEqualToString:@"DiagramSegue"] ){
+	if( [segue.identifier isEqualToString:@"DiagramSegue"] || [segue.identifier isEqualToString:@"DiagramSwipe"]){
 				
-		ITHSContentViewController *diagramView = [segue destinationViewController];
+		ITHSDiagramViewController *diagramView = [segue destinationViewController];
 		
 		diagramView.foodArticle = self.foodArticle;
 	}

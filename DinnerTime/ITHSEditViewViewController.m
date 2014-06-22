@@ -7,7 +7,8 @@
 //
 
 #import "ITHSEditViewViewController.h"
-// #import "ImageUtils.h"
+#import "ITHSDiagramViewController.h"
+
 
 @interface ITHSEditViewViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *articleNumberLabel;
@@ -33,22 +34,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
 	self.articleNumberLabel.text = [NSString stringWithFormat:@"Article: %d", self.articleNr];
 	
-	//[self.deleteButton ];
 	dispatch_async(dispatch_get_main_queue(), ^{
 		
-/*		NSFileManager *fileMgr = [NSFileManager defaultManager];
-		NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES );
-		NSString *dir = path[0];
-		
-		NSArray *fileArr = [ fileMgr contentsOfDirectoryAtPath:dir error:nil];
-		
-		for (NSString *filename in fileArr) {
-			NSLog(@"Found file :%@", filename);
-		}
-*/
 		NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
 		NSMutableArray *nutrients = [ NSMutableArray arrayWithArray:[prefs objectForKey:@"nutrients"] ];
 		
@@ -73,14 +63,9 @@
 	});
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
-
-// I should have a popup asking "Really delete post???".... But... äääääh! Orkaaaa!
+// TODO: I should have a popup asking "Really delete post???".... But... äääääh! Orkaaaa!
+// TODO: I should ask if image associated with it should also be deleted.
 - (IBAction)deleteClicked:(id)sender {
 
 	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
@@ -102,7 +87,6 @@
 					
 					[self animateDelete:@"Deleted record from favorites"];
 					
-					// Crap... This is somewhat annoying. But it must be done...
 					dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 						[NSThread sleepForTimeInterval:1.5];
 						dispatch_async(dispatch_get_main_queue(), ^{
@@ -165,17 +149,7 @@
 
 
 - (IBAction)updateClicked:(id)sender {
-	// Creepy file, it persist... Let's remove before saving new one.
 	
-/*	NSFileManager *fileMgr = [NSFileManager defaultManager];
-	NSString *filename = [NSString stringWithFormat:@"%d-foodFavSnapshot", self.articleNr ];
-
-	
-	BOOL fileExists = [fileMgr fileExistsAtPath:[self imagePath:filename] ];
-	if ( fileExists ) {
-		// NSLog(@"Delete the friggin file...");
-		[fileMgr removeItemAtPath:[self imagePath:filename] error:nil];
-	} */
 	if (self.imageUpdated) {
 		[self animateUpdate:@"Already up to date."];
 		
@@ -324,6 +298,7 @@
 }
 
 
+
 - (IBAction)goBack:(id)sender {
 	// Here we check if image IS updated or not... BEFORE popping.
 	if (self.imageUpdated) {
@@ -340,6 +315,17 @@
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
 	if (buttonIndex==0) {
 		[self.navigationController popViewControllerAnimated:YES];
+	}
+}
+
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+	if( [segue.identifier isEqualToString:@"EDiagramSegue"] || [segue.identifier isEqualToString:@"EDiagramSwipe"]){
+		
+		ITHSDiagramViewController *diagramView = [segue destinationViewController];
+		
+		diagramView.foodArticle = self.articleNr;
 	}
 }
 

@@ -152,11 +152,11 @@
 		8C24D464191A49850091C044 /* DinnerTime */ = {
 			isa = PBXGroup;
 			children = (
-				8C24D473191A49860091C044 /* ITHSViewController.h */,
-				8C24D474191A49860091C044 /* ITHSViewController.m */,
 				8CA549A11934A5A40032BACD /* Views */,
 				8C24D46D191A49860091C044 /* ITHSAppDelegate.h */,
 				8C24D46E191A49860091C044 /* ITHSAppDelegate.m */,
+				8C24D473191A49860091C044 /* ITHSViewController.h */,
+				8C24D474191A49860091C044 /* ITHSViewController.m */,
 				8C24D470191A49860091C044 /* Main.storyboard */,
 				8C24D476191A49860091C044 /* Images.xcassets */,
 				8C24D465191A49850091C044 /* Supporting Files */,

@@ -15,7 +15,11 @@
 @property (nonatomic) NSArray *foodList;
 
 -(BOOL)dataLoaded;
+
+-(NSString*)getItemName:(int)forItem;
 -(NSDictionary*)getNutritions:(int)forItem;
+-(NSDictionary*)getLastItem;
+
 
 -(NSString*)Error;
 
